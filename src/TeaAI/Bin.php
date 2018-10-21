@@ -65,7 +65,7 @@ final class Bin
 			$this->usage();
 			return;
 		}
-
+		$cmd = NULL;
 		$tSkip = false;
 		foreach ($this->argv as $k => $v) {
 
@@ -310,10 +310,24 @@ final class Bin
 						$this->err("Invalid option -{$v[1]}");
 					}
 				}
+			} else {
+				if (isset($cmd)) {
+					$this->err(
+						"You can only provide one command!\n".
+						"Parsed commands: ".json_encode([$cmd, $v], 64)
+					);
+				}
+				$cmd = $v;
 			}
 		}
 
-		var_dump($this->outputRes);
+		if (count($this->outputRes) === 0) {
+			$this->err("You need to provide at least one output resource!");
+		}
+
+		if (!isset($this->inputRes)) {
+			$this->err("You need to provide an input resource!");
+		}
 	}
 
 	/**
