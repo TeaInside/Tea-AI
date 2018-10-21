@@ -38,7 +38,8 @@ final class Bin
 	 * Constructor.
 	 */
 	public function __construct()
-	{
+	{		
+
 		if (! isset($_SERVER["argv"])) {
 			throw new BinException("\$_SERVER[\"argv\"] variable is not set");
 		}
@@ -76,6 +77,61 @@ final class Bin
 			if ($v[0] === "-" && isset($v[1])) {
 				if ($v[1] === "-") {
 					
+					$opt = substr($v, 2);
+
+					if (preg_match("/(^[^\=]*)(?:=)([^=]*$)/Usi", $opt, $m)) {
+						switch ($m[1]) {
+
+							case "stdout-output":
+								$this->outputRes[] = "php://stdout";
+								break;
+							case "stdin-input":
+								if (isset($this->inputRes)) {
+									$oldInputRes = $this->inputRes;
+									$inputResError = 1;
+								}
+								$this->inputRes = "php://stdin";
+								if (isset($inputResError)) {
+									$this->err(
+										"You can only provide one input resource!\n".
+										"Parsed input resources: ".json_encode(
+											[$oldInputRes, $this->inputRes], 
+											64
+										)
+									);
+								}
+								break;
+							case "output":
+								$this->outputRes[] = $m[2] = trim($m[2]);
+								if (empty($m[2])) {
+									$this->err(
+										"Detected an empty string on output value"
+									);
+								}
+								break;
+							case "input":
+								if (isset($this->inputRes)) {
+									$oldInputRes = $this->inputRes;
+									$inputResError = 1;
+								}
+								$this->inputRes = trim($m[2]);
+								if (isset($inputResError)) {
+									$this->err(
+										"You can only provide one input resource!\n".
+										"Parsed input resources: ".json_encode(
+											[$oldInputRes, $this->inputRes],
+											64
+										)
+									);
+								}
+								break;
+							default:
+								break;
+						}
+					} else {
+
+					}
+
 				} else {
 
 					if ($v[1] === "o") {
@@ -92,9 +148,7 @@ final class Bin
 							}
 							$tSkip = true;
 						}
-					}
-
-					if ($v[1] === "i") {
+					} else if ($v[1] === "i") {
 						if (isset($this->inputRes)) {
 							$oldInputRes = $this->inputRes;
 							$inputResError = 1;
@@ -117,12 +171,13 @@ final class Bin
 						if (isset($inputResError)) {
 							$this->err(
 								"You can only provide one input resource!\n".
-								"Parsed input resources: ".json_encode([$oldInputRes, $this->inputRes])
+								"Parsed input resources: ".json_encode(
+									[$oldInputRes, $this->inputRes],
+									64
+								)
 							);
 						}
-					}
-
-					if ($v[1] === "t") {
+					} else if ($v[1] === "t") {
 						if ($this->timeout !== -1) {
 							$oldTimeout = $this->timeout;
 							$timeoutResError = 1;
@@ -145,7 +200,10 @@ final class Bin
 						if (isset($timeoutResError)) {
 							$this->err(
 								"You can only provide one timeout value!\n".
-								"Parsed timeout values: ".json_encode([$oldInputRes, $this->inputRes])
+								"Parsed timeout values: ".json_encode(
+									[$oldInputRes, $this->inputRes],
+									64
+								)
 							);
 						}
 
@@ -160,10 +218,14 @@ final class Bin
 						}
 
 						$this->timeout = (int)$this->timeout;
+					} else {
+						$this->err("Invalid option -{$v[1]}");
 					}
 				}
 			}
 		}
+
+		var_dump($this->outputRes);
 	}
 
 	/**
