@@ -21,8 +21,8 @@ if (__DV) {
 	{
 		fprintf(
 			STDOUT,
-			"[%s] %s\n",
-			date("r"),
+			"Debug: [%s] %s\n",
+			date("Y-m-d H:i:s"),
 			sprintf(
 				$format, 
 				...$args
@@ -57,7 +57,7 @@ $constants = [
 
 foreach ($constants as $v) {
 	if (defined($v)) {
-		__DV and debugMsg("%s is defined", $v);
+		__DV and debugMsg("`%s` constant is defined", $v);
 	} else {
 		throw new DebuggerError("%s is not defined", $v);
 	}

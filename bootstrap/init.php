@@ -7,7 +7,7 @@
  * @license MIT
  */
 
-if (defined("__TEA_AI_INIT")):
+if (! defined("__TEA_AI_INIT")):
 	
 	define("__TEA_AI_INIT", 1);
 
@@ -15,6 +15,7 @@ if (defined("__TEA_AI_INIT")):
 
 
 	// Debug only
+	define("DEBUG_VERBOSE", true);
 	require __DIR__."/debug/debugger.php";
 
 
