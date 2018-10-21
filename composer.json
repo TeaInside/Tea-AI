@@ -1,0 +1,14 @@
+{
+    "name": "ammarfaizi2/tea-ai",
+    "description": "An Artificial Intelligence",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ammar Faizi",
+            "email": "ammarfaizi2@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
