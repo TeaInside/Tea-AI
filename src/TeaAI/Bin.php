@@ -18,6 +18,21 @@ final class Bin
 	private $argv = [];
 
 	/**
+	 * @var array
+	 */
+	private $outputRes = [];
+
+	/**
+	 * @var string
+	 */
+	private $inputRes = NULL;
+
+	/**
+	 * @var int
+	 */
+	private $timeout = -1;
+
+	/**
 	 * @throws \TeaAI\Exceptions\BinException
 	 *
 	 * Constructor.
@@ -50,9 +65,114 @@ final class Bin
 			return;
 		}
 
+		$tSkip = false;
 		foreach ($this->argv as $k => $v) {
-			
+
+			if ($tSkip) {
+				$tSkip = false;
+				continue;
+			}
+
+			if ($v[0] === "-" && isset($v[1])) {
+				if ($v[1] === "-") {
+					
+				} else {
+
+					if ($v[1] === "o") {
+						if (isset($v[2])) {
+							$this->outputRes[] = substr($v, 2);
+						} else {
+							if (
+								isset($this->argv[$k + 1]) && 
+								$this->argv[$k + 1][0] !== "-"
+							) {
+								$this->outputRes[] = $this->argv[$k + 1];
+							} else {
+								$this->err("-o option needs a value");
+							}
+							$tSkip = true;
+						}
+					}
+
+					if ($v[1] === "i") {
+						if (isset($this->inputRes)) {
+							$oldInputRes = $this->inputRes;
+							$inputResError = 1;
+						}
+
+						if (isset($v[2])) {
+							$this->inputRes = substr($v, 2);
+						} else {
+							if (
+								isset($this->argv[$k + 1]) && 
+								$this->argv[$k + 1][0] !== "-"
+							) {
+								$this->inputRes = $this->argv[$k + 1];
+							} else {
+								$this->err("-i option needs a value");
+							}
+							$tSkip = true;
+						}
+
+						if (isset($inputResError)) {
+							$this->err(
+								"You can only provide one input resource!\n".
+								"Parsed input resources: ".json_encode([$oldInputRes, $this->inputRes])
+							);
+						}
+					}
+
+					if ($v[1] === "t") {
+						if ($this->timeout !== -1) {
+							$oldTimeout = $this->timeout;
+							$timeoutResError = 1;
+						}
+
+						if (isset($v[2])) {
+							$this->timeout = substr($v, 2);
+						} else {
+							if (
+								isset($this->argv[$k + 1]) && 
+								$this->argv[$k + 1][0] !== "-"
+							) {
+								$this->timeout = $this->argv[$k + 1];
+							} else {
+								$this->err("-t option needs a value");
+							}
+							$tSkip = true;
+						}
+
+						if (isset($timeoutResError)) {
+							$this->err(
+								"You can only provide one timeout value!\n".
+								"Parsed timeout values: ".json_encode([$oldInputRes, $this->inputRes])
+							);
+						}
+
+						if (
+							!is_numeric($this->timeout) ||
+							preg_match("/[^0-9]/Usi", $this->timeout)
+						) {
+							$this->err(
+								"The timeout value must be an integer!\n".
+								"Parsed timeout values: \"{$this->timeout}\""
+							);
+						}
+
+						$this->timeout = (int)$this->timeout;
+					}
+				}
+			}
 		}
+	}
+
+	/**
+	 *
+	 */
+	private function err(string $str): void
+	{
+		fprintf(STDERR, "Error: %s\n", $str);
+		exit(1);
 	}
 
 	/**
@@ -75,5 +195,6 @@ final class Bin
 		fprintf(STDERR, "\t--argv-input <string>\tRead the input from <string>.\n");
 		fprintf(STDERR, "\t-t <int>\t\tLimit the AI execution time in seconds.\n");
 		fprintf(STDERR, "\t--timeout <int>\t\tLimit the AI execution time in seconds.\n");
+		exit(1);
 	}
 }
