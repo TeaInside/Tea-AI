@@ -33,7 +33,9 @@ final class Bin
 		}
 
 		// Strip app name.
-		$this->argv = array_shift($_SERVER["argv"]);
+		$argv = $_SERVER["argv"];
+		array_shift($argv);
+		$this->argv = $argv;
 	}
 
 	/**
@@ -41,6 +43,37 @@ final class Bin
 	 */
 	public function run(): void
 	{
+		$c = count($this->argv);
 
+		if ($c === 0) {
+			$this->usage();
+			return;
+		}
+
+		foreach ($this->argv as $k => $v) {
+			
+		}
+	}
+
+	/**
+	 * @return void
+	 */
+	private function usage(): void
+	{
+		fprintf(STDERR, "Usage: php {$_SERVER['argv'][0]} [options] [command]\n");
+		fprintf(STDERR, " Commands:\n");
+		fprintf(STDERR, "\tcalc\t\t\tCalculate mathematical expression.\n");
+		fprintf(STDERR, "\tchat\t\t\tPerforming an AI chat.\n");
+		fprintf(STDERR, "\tupdate\t\t\tUpdate application core.\n\n");
+		fprintf(STDERR, " Options:\n");
+		fprintf(STDERR, "\t-o <file>\t\tPlace the output into <file>.\n");
+		fprintf(STDERR, "\t--output <file>\t\tPlace the output into <file>.\n");
+		fprintf(STDERR, "\t-i <file>\t\tRead the input from <file>.\n");
+		fprintf(STDERR, "\t--input <file>\t\tRead the input from <file>.\n");
+		fprintf(STDERR, "\t--stdout-output\t\tShow the output to stdout.\n");
+		fprintf(STDERR, "\t--stdin-input\t\tRead the input from stdin.\n");
+		fprintf(STDERR, "\t--argv-input <string>\tRead the input from <string>.\n");
+		fprintf(STDERR, "\t-t <int>\t\tLimit the AI execution time in seconds.\n");
+		fprintf(STDERR, "\t--timeout <int>\t\tLimit the AI execution time in seconds.\n");
 	}
 }
