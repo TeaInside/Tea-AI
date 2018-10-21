@@ -317,7 +317,8 @@ final class Bin
 	}
 
 	/**
-	 *
+	 * @param string $str
+	 * @return void
 	 */
 	private function err(string $str): void
 	{
