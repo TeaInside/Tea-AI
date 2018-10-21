@@ -357,7 +357,10 @@ final class Bin
 		fprintf(STDERR, "\t--input <file>\t\tRead the input from <file>.\n");
 		fprintf(STDERR, "\t--stdout-output\t\tShow the output to stdout.\n");
 		fprintf(STDERR, "\t--stdin-input\t\tRead the input from stdin.\n");
-		fprintf(STDERR, "\t--argv-input <string>\tRead the input from <string>.\n");
+
+		// Coming soon
+		// fprintf(STDERR, "\t--argv-input <string>\tRead the input from <string>.\n");
+		
 		fprintf(STDERR, "\t-t <int>\t\tLimit the AI execution time in seconds.\n");
 		fprintf(STDERR, "\t--timeout <int>\t\tLimit the AI execution time in seconds.\n");
 		exit(1);
