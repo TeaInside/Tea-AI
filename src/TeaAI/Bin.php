@@ -33,6 +33,11 @@ final class Bin
 	private $timeout = -1;
 
 	/**
+	 * @var string
+	 */
+	private $cmd = NULL;
+
+	/**
 	 * @throws \TeaAI\Exceptions\BinException
 	 *
 	 * Constructor.
@@ -47,9 +52,10 @@ final class Bin
 		if (PHP_SAPI !== "cli") {
 			throw new BinException("You can only run this script in CLI environment");
 		}
-
-		// Strip app name.
+		
 		$argv = $_SERVER["argv"];
+
+		// Strip the app name.
 		array_shift($argv);
 		$this->argv = $argv;
 	}
@@ -65,8 +71,9 @@ final class Bin
 			$this->usage();
 			return;
 		}
-		$cmd = NULL;
+
 		$tSkip = false;
+
 		foreach ($this->argv as $k => $v) {
 
 			if ($tSkip) {
@@ -311,13 +318,13 @@ final class Bin
 					}
 				}
 			} else {
-				if (isset($cmd)) {
+				if (isset($this->cmd)) {
 					$this->err(
 						"You can only provide one command!\n".
-						"Parsed commands: ".json_encode([$cmd, $v], 64)
+						"Parsed commands: ".json_encode([$this->cmd, $v], 64)
 					);
 				}
-				$cmd = $v;
+				$this->cmd = $v;
 			}
 		}
 
@@ -360,7 +367,7 @@ final class Bin
 
 		// Coming soon
 		// fprintf(STDERR, "\t--argv-input <string>\tRead the input from <string>.\n");
-		
+
 		fprintf(STDERR, "\t-t <int>\t\tLimit the AI execution time in seconds.\n");
 		fprintf(STDERR, "\t--timeout <int>\t\tLimit the AI execution time in seconds.\n");
 		exit(1);
