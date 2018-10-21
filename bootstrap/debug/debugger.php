@@ -10,8 +10,6 @@
 define("__DV", defined("DEBUG_VERBOSE") && DEBUG_VERBOSE);
 
 if (__DV) {
-	defined("STDOUT") or define("STDOUT", fopen("php://stdout", "w"));
-
 	/**
 	 * @param string $format
 	 * @param mixed  ...$args

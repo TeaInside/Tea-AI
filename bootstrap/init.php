@@ -6,16 +6,19 @@
  * @author Ammar Faizi <ammarfaizi2@gmail.com> https://www.facebook.com/ammarfaizi2
  * @license MIT
  */
-
 if (! defined("__TEA_AI_INIT")):
 	
 	define("__TEA_AI_INIT", 1);
 
+	// Prepare I/O
+	defined("STDIN") or define("STDIN", fopen("php://stdin", "r"));
+	defined("STDOUT") or define("STDOUT", fopen("php://stdout", "w"));
+	defined("STDERR") or define("STDERR", fopen("php://stderr", "w"));
+
 	require __DIR__."/../config/init.php";
 
-
 	// Debug only
-	define("DEBUG_VERBOSE", true);
+	// define("DEBUG_VERBOSE", true);
 	require __DIR__."/debug/debugger.php";
 
 
