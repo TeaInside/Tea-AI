@@ -79,9 +79,14 @@ final class Bin
 					
 					$opt = substr($v, 2);
 
-					if (preg_match("/(^[^\=]*)(?:=)([^=]*$)/Usi", $opt, $m)) {
-						switch ($m[1]) {
+					if (preg_match("/(^[^\=]*)(?:=?)([^=]*$)/Usi", $opt, $m)) {
 
+						if ($m[1] === "") {
+							$m[1] = $m[2];
+							$m[2] = null;
+						}
+
+						switch ($m[1]) {
 							case "stdout-output":
 								$this->outputRes[] = "php://stdout";
 								break;
@@ -101,12 +106,73 @@ final class Bin
 									);
 								}
 								break;
-							case "output":
-								$this->outputRes[] = $m[2] = trim($m[2]);
-								if (empty($m[2])) {
+
+							case "timeout":
+								if ($this->timeout !== -1) {
+									$oldTimeout = $this->timeout;
+									$timeoutResError = 1;
+								}
+
+								if (isset($m[2])) {
+									$this->timeout = $m[2] = trim($m[2]);
+									if (empty($m[2])) {
+										$this->err(
+											"Detected an empty string on timeout value"
+										);
+									}
+								} else {
+									if (
+										isset($this->argv[$k + 1]) && 
+										$this->argv[$k + 1][0] !== "-"
+									) {
+										$this->timeout = $this->argv[$k + 1];
+									} else {
+										$this->err("-t option needs a value");
+									}
+									$tSkip = true;
+								}
+
+								if (isset($timeoutResError)) {
 									$this->err(
-										"Detected an empty string on output value"
+										"You can only provide one timeout value!\n".
+										"Parsed timeout values: ".json_encode(
+											[$oldInputRes, $this->inputRes],
+											64
+										)
 									);
+								}
+
+								if (
+									!is_numeric($this->timeout) ||
+									preg_match("/[^0-9]/Usi", $this->timeout)
+								) {
+									$this->err(
+										"The timeout value must be an integer and more than -1!\n".
+										"Parsed timeout values: \"{$this->timeout}\""
+									);
+								}
+
+								$this->timeout = (int)$this->timeout;
+								break;
+
+							case "output":
+								if (isset($m[2])) {
+									$this->outputRes[] = $m[2] = trim($m[2]);
+									if (empty($m[2])) {
+										$this->err(
+											"Detected an empty string on output value"
+										);
+									}
+								} else {
+									if (
+										isset($this->argv[$k + 1]) && 
+										$this->argv[$k + 1][0] !== "-"
+									) {
+										$this->outputRes[] = $this->argv[$k + 1];
+									} else {
+										$this->err("--output option needs a value");
+									}
+									$tSkip = true;
 								}
 								break;
 							case "input":
@@ -114,7 +180,26 @@ final class Bin
 									$oldInputRes = $this->inputRes;
 									$inputResError = 1;
 								}
-								$this->inputRes = trim($m[2]);
+
+								if (isset($m[2])) {
+									$this->inputRes = $m[2] = trim($m[2]);
+									if (empty($m[2])) {
+										$this->err(
+											"Detected an empty string on input value"
+										);
+									}
+								} else {
+									if (
+										isset($this->argv[$k + 1]) && 
+										$this->argv[$k + 1][0] !== "-"
+									) {
+										$this->inputRes = $this->argv[$k + 1];
+									} else {
+										$this->err("-i option needs a value");
+									}
+									$tSkip = true;
+								}
+
 								if (isset($inputResError)) {
 									$this->err(
 										"You can only provide one input resource!\n".
@@ -126,6 +211,9 @@ final class Bin
 								}
 								break;
 							default:
+								$this->err(
+									"Invalid option --{$m[0]}"
+								);
 								break;
 						}
 					} else {
@@ -212,7 +300,7 @@ final class Bin
 							preg_match("/[^0-9]/Usi", $this->timeout)
 						) {
 							$this->err(
-								"The timeout value must be an integer!\n".
+								"The timeout value must be an integer and more than -1!\n".
 								"Parsed timeout values: \"{$this->timeout}\""
 							);
 						}
