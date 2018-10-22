@@ -20,8 +20,26 @@ final class TeaAI
 	/**
 	 * Constructor.
 	 */
-	public function __construct()
+	public function __construct(string $cmd)
 	{
+		$this->cmd = $cmd;
+	}
 
+	/**
+	 * @return void
+	 */
+	public function run(): void
+	{
+		switch ($this->cmd) {
+			case "calc":
+				$this->calc();
+				return;
+				break;
+			case "chat":
+				chat();
+				break;
+			default:
+				break;
+		}
 	}
 }

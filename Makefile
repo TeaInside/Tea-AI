@@ -1,5 +1,5 @@
 
-NAME				=	serres
+NAME				=	teaai
 
 PHP_VERSION			=	7.2
 INI_DIR				=	/etc/php/${PHP_VERSION}/mods-available
