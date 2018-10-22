@@ -218,15 +218,12 @@ final class Bin
 								}
 								break;
 							default:
-								$this->err(
-									"Invalid option --{$m[0]}"
-								);
+								$this->err("Invalid option --{$m[0]}");
 								break;
 						}
 					} else {
-
+						$this->err("Invalid argv {$v}");
 					}
-
 				} else {
 
 					if ($v[1] === "o") {
