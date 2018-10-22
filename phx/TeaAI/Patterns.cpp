@@ -13,4 +13,5 @@ void TeaAI::buildPattern() {
 	this->patterns = (char**)malloc(R_SIZE * sizeof(char*));
 
 	this->setPattern("/malam/Usi");
+	this->setPattern("/pagi/Usi");
 }

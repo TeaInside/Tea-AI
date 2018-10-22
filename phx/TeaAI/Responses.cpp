@@ -4,6 +4,7 @@
 #include "../headers/TeaAI.h"
 
 void TeaAI::setResponse(int offset, const char *res) {
+	this->responses[offset] = (char**)malloc(64 * sizeof(char*));
 	this->responses[offset][this->responseOffset2[offset]] = (char*)malloc(strlen(res) * sizeof(char*));
 	strcpy(this->responses[offset][this->responseOffset2[offset]++], res);
 }
@@ -20,4 +21,5 @@ void TeaAI::buildResponses() {
 	this->zeroFill();
 
 	this->setResponse(0, "Selamat malam");
+	this->setResponse(1, "Selamat pagi");
 }
