@@ -19,7 +19,4 @@ void TeaAI::buildResponses() {
 	this->responseOffset2 = (int*)malloc(R_SIZE * sizeof(int*));
 	this->responses = (char***)malloc(R_SIZE * sizeof(char*));
 	this->zeroFill();
-
-	this->setResponse(0, "Selamat malam");
-	this->setResponse(1, "Selamat pagi");
 }
