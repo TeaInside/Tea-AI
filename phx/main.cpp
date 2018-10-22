@@ -5,7 +5,9 @@
 extern "C" {
     PHPCPP_EXPORT void *get_module() {
         static Php::Extension extension("teaai", "1.0");
-        extension.add<rd>("rd");
+        extension.add<tea_ai_chat>("tea_ai_chat", {
+        	Php::ByVal("text", Php::Type::String)
+        });
         return extension;
     }
 }

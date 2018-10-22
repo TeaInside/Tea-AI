@@ -334,7 +334,8 @@ final class Bin
 		}
 
 		if ($this->timeout === -1) {
-			$this-
+			$res = new TeaAI($this->cmd);
+			$res->run();
 		} else {
 
 		}

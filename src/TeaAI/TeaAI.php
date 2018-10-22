@@ -36,7 +36,7 @@ final class TeaAI
 				return;
 				break;
 			case "chat":
-				chat();
+				tea_ai_chat("selamat malam");
 				break;
 			default:
 				break;
