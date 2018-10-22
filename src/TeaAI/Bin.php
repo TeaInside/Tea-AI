@@ -332,6 +332,12 @@ final class Bin
 		if (!isset($this->inputRes)) {
 			$this->err("You need to provide an input resource!");
 		}
+
+		if ($this->timeout === -1) {
+			$this-
+		} else {
+
+		}
 	}
 
 	/**

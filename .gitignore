@@ -5,3 +5,4 @@
 *.lock
 /vendor/
 /.phpintel/
+/serres-component/
