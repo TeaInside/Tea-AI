@@ -6,6 +6,8 @@
 
 #include <cstdio>
 #include <vector>
+#include <thread>
+#include <stdlib.h>
 #include <iostream>
 #include <phpcpp.h>
 #include <string.h>
@@ -18,16 +20,16 @@ public:
 	TeaAI();
 	~TeaAI();
 	bool check(Php::Value);
-	std::string getResponse();
+	std::string getResponseResult();
 private:
-	int patternOffset = 0;
-	int responseOffset = 0;
-	int *responseOffset2;
+
 	char **patterns;
 	char ***responses;
+	int patternOffset = 0;
+	int *responseOffsetD2;
+	char *responseResult;
 
 	void zeroFill();
-	void buildPattern();
 	void buildResponses();
 	void setPattern(const char*);
 	void setResponse(int offset, const char *res);
