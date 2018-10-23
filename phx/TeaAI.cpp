@@ -15,9 +15,19 @@ bool TeaAI::check(Php::Value txt) {
 	for (int i = 0; i < this->patternOffset; ++i) {
 		if (Php::call("preg_match", this->patterns[i], txt)) {
 			int offsetResult = Php::call("rand", 0, this->responseOffsetD2[i] - 1);
-			this->responseResult = (char*)malloc(strlen(this->responses[i][offsetResult]) * sizeof(char*));
+
+			this->responseResult = (char*)malloc(
+				strlen(this->responses[i][offsetResult]) * sizeof(char*)
+			);
 			strcpy(this->responseResult, this->responses[i][offsetResult]);
+			
+			delete this->patterns;
+			delete this->responses;
+
 			return true;
+		} else {
+			delete this->patterns[i];
+			delete this->responses[i];
 		}
 	}
 	return false;

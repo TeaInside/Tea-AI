@@ -28,19 +28,31 @@ void TeaAI::buildResponses() {
 	this->responseOffsetD2 = (int*)malloc(R_SIZE * sizeof(int*));
 	this->zeroFill();
 
-
 	this->setPattern(
-		"/(?:^|[\\t\\s\n])(se?la?ma?t)?([\\s\\n]*)(pa?gi?)(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(pa?gi?)(?:[\\t\\s\\n]|$)/Usi"
 	);
 	this->setResponse(0, "Selamat pagi!");
 	this->setResponse(0, "Selamat pagi {name}, apa kabar?");
 	this->setResponse(0, "Selamat pagi juga {cname}");
 
+	this->setPattern(
+		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(siang)(?:[\\t\\s\\n]|$)/Usi"
+	);
+	this->setResponse(1, "Selamat siang!");
+	this->setResponse(1, "Selamat siang {name}, apa kabar?");
+	this->setResponse(1, "Selamat siang juga {cname}");
 
 	this->setPattern(
-		"/(?:^|[\\t\\s\n])(se?la?ma?t|met)?(?:[\\t\\s\\n]*)(ma?l(a|e)?m)(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(sore)(?:[\\t\\s\\n]|$)/Usi"
 	);
-	this->setResponse(1, "Selamat malam!");
-	this->setResponse(1, "Selamat malam {cname}, apa kabar?");
-	this->setResponse(1, "Selamat malam juga {cname}");
+	this->setResponse(2, "Selamat sore!");
+	this->setResponse(2, "Selamat sore {name}, apa kabar?");
+	this->setResponse(2, "Selamat sore juga {cname}");
+
+	this->setPattern(
+		"/(?:^|[\\t\\s\n])(se?la?ma?t|met)(?:[\\t\\s\\n]*)(ma?l(a|e)?m)(?:[\\t\\s\\n]|$)/Usi"
+	);
+	this->setResponse(3, "Selamat malam!");
+	this->setResponse(3, "Selamat malam {cname}, apa kabar?");
+	this->setResponse(3, "Selamat malam juga {cname}");
 }
