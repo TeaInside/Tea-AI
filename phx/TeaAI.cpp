@@ -28,8 +28,16 @@ std::string TeaAI::getResponseResult() {
 	std::vector<std::string> r1;
 	std::vector<std::string> r2;
 	
-	r1.push_back("{cname}");
-	r2.push_back("mar");
+	std::string _r1[] = {
+		"{cname}"
+	};
+
+	std::string _r2[] = {
+		"mar"
+	};
+
+	r1.insert(r1.begin(), _r1, _r1+1);
+	r2.insert(r2.begin(), _r2, _r2+1);
 
 	return Php::call(
 		"str_replace",
