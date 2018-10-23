@@ -27,6 +27,7 @@ private:
 	char ***responses;
 	int patternOffset = 0;
 	int *responseOffsetD2;
+	
 	char *responseResult;
 
 	void zeroFill();

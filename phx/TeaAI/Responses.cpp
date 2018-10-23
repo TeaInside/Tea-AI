@@ -10,7 +10,7 @@ void TeaAI::setResponse(int offset, const char *res) {
 	if (this->responseOffsetD2[offset] == 0) {
 		this->responses[offset] = (char**)malloc(256 * sizeof(char*));
 	}
-	this->responses[offset][this->responseOffsetD2[offset]] = (char*)malloc(256 * sizeof(char*));
+	this->responses[offset][this->responseOffsetD2[offset]] = (char*)malloc(strlen(res) * sizeof(char*));
 	strcpy(this->responses[offset][this->responseOffsetD2[offset]++], res);
 }
 
@@ -21,16 +21,26 @@ void TeaAI::zeroFill() {
 }
 
 void TeaAI::buildResponses() {
+
+
 	this->patterns = (char**)malloc(R_SIZE * sizeof(char*));
 	this->responses = (char***)malloc(R_SIZE * sizeof(char*));
 	this->responseOffsetD2 = (int*)malloc(R_SIZE * sizeof(int*));
 	this->zeroFill();
 
-	this->setPattern("/malam/Usi");
-	this->setResponse(0, "Selamat malam");
-	this->setResponse(0, "Selamat malam dunia");
 
-	this->setPattern("/pagi/Usi");
-	this->setResponse(1, "Selamat pagi");
-	this->setResponse(1, "Selamat pagi dunia");
+	this->setPattern(
+		"/(?:^|[\\t\\s\n])(se?la?ma?t)?([\\s\\n]*)(pa?gi?)(?:[\\t\\s\\n]|$)/Usi"
+	);
+	this->setResponse(0, "Selamat pagi!");
+	this->setResponse(0, "Selamat pagi {name}, apa kabar?");
+	this->setResponse(0, "Selamat pagi juga {cname}");
+
+
+	this->setPattern(
+		"/(?:^|[\\t\\s\n])(se?la?ma?t|met)?(?:[\\t\\s\\n]*)(ma?l(a|e)?m)(?:[\\t\\s\\n]|$)/Usi"
+	);
+	this->setResponse(1, "Selamat malam!");
+	this->setResponse(1, "Selamat malam {cname}, apa kabar?");
+	this->setResponse(1, "Selamat malam juga {cname}");
 }

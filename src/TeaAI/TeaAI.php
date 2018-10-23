@@ -36,7 +36,8 @@ final class TeaAI
 				return;
 				break;
 			case "chat":
-				var_dump(tea_ai_chat("selamat pagi"));
+				$a = tea_ai_chat("malam");
+				var_dump($a);
 				break;
 			default:
 				break;
