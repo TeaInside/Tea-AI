@@ -35,31 +35,85 @@ void TeaAI::buildResponses() {
 	this->setPattern(
 		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(pa?gi?)(?:[\\t\\s\\n]|$)/Usi"
 	);
-	// 0 AM to 11 AM
-	// if (this->iRange(0, 11)) {
+
+	if (this->iRange(0, 11)) {
 		this->setResponse(0, "Selamat pagi!");
 		this->setResponse(0, "Selamat pagi {name}, apa kabar?");
-		this->setResponse(0, "Selamat pagi juga {cname}");	
-	// } else if () 
+		this->setResponse(0, "Selamat pagi juga {cname}");
+	} else if (this->iRange(12, 14)) {
+		this->setResponse(0, "Ini sudah siang {cname}");
+		this->setResponse(0, "Selamat siang, selamat beraktifitas!");
+		this->setResponse(0, "Selamat siang!");
+	} else if (this->iRange(15, 18)) {
+		this->setResponse(0, "Ini sudah sudah sore {cname}");
+		this->setResponse(0, "Selamat sore!");
+		this->setResponse(0, "Sore {cname}");
+	} else {
+		this->setResponse(0, "Ini sudah sudah malam {cname}");
+		this->setResponse(0, "Selamat malam, selamat beristirahat");
+		this->setResponse(0, "Malam {cname}");
+	}
 
 	this->setPattern(
 		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(siang)(?:[\\t\\s\\n]|$)/Usi"
 	);
-	this->setResponse(1, "Selamat siang!");
-	this->setResponse(1, "Selamat siang {name}, apa kabar?");
-	this->setResponse(1, "Selamat siang juga {cname}");
+	if (this->iRange(0, 10)) {
+		this->setResponse(1, "Ini masih pagi {cname}");
+		this->setResponse(1, "Selamat pagi!");
+		this->setResponse(1, "Pagi {cname}");
+	} else if (this->iRange(11, 14)) {
+		this->setResponse(1, "Selamat siang!");
+		this->setResponse(1, "Selamat siang {name}, apa kabar?");
+		this->setResponse(1, "Selamat siang juga {cname}");
+	} else if (this->iRange(15, 18)){
+		this->setResponse(1, "Ini sudah sore {cname}");
+		this->setResponse(1, "Selamat sore!");
+		this->setResponse(1, "Sore {cname}");
+	} else {
+		this->setResponse(1, "Ini sudah malam {cname}");
+		this->setResponse(1, "Selamat malam!");
+		this->setResponse(1, "Malam {cname}");
+	}
 
 	this->setPattern(
 		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(sore)(?:[\\t\\s\\n]|$)/Usi"
 	);
-	this->setResponse(2, "Selamat sore!");
-	this->setResponse(2, "Selamat sore {name}, apa kabar?");
-	this->setResponse(2, "Selamat sore juga {cname}");
+	if (this->iRange(0, 10)) {
+		this->setResponse(2, "Ini masih pagi {cname}");
+		this->setResponse(2, "Selamat pagi!");
+		this->setResponse(2, "Pagi {cname}");
+	} else if (this->iRange(11, 14)) {
+		this->setResponse(2, "Ini masih siang {cname}");
+		this->setResponse(2, "Selamat siang, selamat beraktifitas!");
+		this->setResponse(2, "Selamat siang!");
+	} else if (this->iRange(15, 18)){
+		this->setResponse(2, "Selamat sore!");
+		this->setResponse(2, "Selamat sore {name}, apa kabar?");
+		this->setResponse(2, "Selamat sore juga {cname}");
+	} else {
+		this->setResponse(2, "Ini sudah malam {cname}");
+		this->setResponse(2, "Selamat malam!");
+		this->setResponse(2, "Malam {cname}");
+	}
 
 	this->setPattern(
 		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(ma?l(a|e)?m)(?:[\\t\\s\\n]|$)/Usi"
 	);
-	this->setResponse(3, "Selamat malam!");
-	this->setResponse(3, "Selamat malam {cname}, apa kabar?");
-	this->setResponse(3, "Selamat malam juga {cname}");	
+		if (this->iRange(0, 10)) {
+		this->setResponse(3, "Ini sudah pagi {cname}");
+		this->setResponse(3, "Selamat pagi!");
+		this->setResponse(3, "Pagi {cname}");
+	} else if (this->iRange(11, 14)) {
+		this->setResponse(3, "Ini masih siang {cname}");
+		this->setResponse(3, "Selamat siang, selamat beraktifitas!");
+		this->setResponse(3, "Selamat siang!");
+	} else if (this->iRange(15, 18)){
+		this->setResponse(3, "Ini masih sore {cname}");
+		this->setResponse(3, "Selamat sore!");
+		this->setResponse(3, "Sore {cname}");
+	} else {
+		this->setResponse(3, "Selamat malam!");
+		this->setResponse(3, "Selamat malam {cname}, apa kabar?");
+		this->setResponse(3, "Selamat malam juga {cname}");	
+	}
 }

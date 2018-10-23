@@ -21,13 +21,13 @@ bool TeaAI::check(Php::Value txt) {
 			);
 			strcpy(this->responseResult, this->responses[i][offsetResult]);
 			
-			delete this->patterns;
-			delete this->responses;
+			free(this->patterns);
+			free(this->responses);
 
 			return true;
 		} else {
-			delete this->patterns[i];
-			delete this->responses[i];
+			free(this->patterns[i]);
+			free(this->responses[i]);
 		}
 	}
 	return false;
