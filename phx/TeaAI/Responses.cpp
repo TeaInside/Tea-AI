@@ -20,9 +20,13 @@ void TeaAI::zeroFill() {
 	}
 }
 
+bool TeaAI::iRange(int start, int end) {
+	return this->h >= start && this->h <= end;
+}
+
 void TeaAI::buildResponses() {
 
-
+	this->h = atoi(Php::call("date", "H"));
 	this->patterns = (char**)malloc(R_SIZE * sizeof(char*));
 	this->responses = (char***)malloc(R_SIZE * sizeof(char*));
 	this->responseOffsetD2 = (int*)malloc(R_SIZE * sizeof(int*));
@@ -31,9 +35,12 @@ void TeaAI::buildResponses() {
 	this->setPattern(
 		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(pa?gi?)(?:[\\t\\s\\n]|$)/Usi"
 	);
-	this->setResponse(0, "Selamat pagi!");
-	this->setResponse(0, "Selamat pagi {name}, apa kabar?");
-	this->setResponse(0, "Selamat pagi juga {cname}");
+	// 0 AM to 11 AM
+	// if (this->iRange(0, 11)) {
+		this->setResponse(0, "Selamat pagi!");
+		this->setResponse(0, "Selamat pagi {name}, apa kabar?");
+		this->setResponse(0, "Selamat pagi juga {cname}");	
+	// } else if () 
 
 	this->setPattern(
 		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(siang)(?:[\\t\\s\\n]|$)/Usi"
@@ -50,9 +57,9 @@ void TeaAI::buildResponses() {
 	this->setResponse(2, "Selamat sore juga {cname}");
 
 	this->setPattern(
-		"/(?:^|[\\t\\s\n])(se?la?ma?t|met)(?:[\\t\\s\\n]*)(ma?l(a|e)?m)(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(ma?l(a|e)?m)(?:[\\t\\s\\n]|$)/Usi"
 	);
 	this->setResponse(3, "Selamat malam!");
 	this->setResponse(3, "Selamat malam {cname}, apa kabar?");
-	this->setResponse(3, "Selamat malam juga {cname}");
+	this->setResponse(3, "Selamat malam juga {cname}");	
 }

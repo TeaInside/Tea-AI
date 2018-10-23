@@ -22,18 +22,18 @@ public:
 	bool check(Php::Value);
 	std::string getResponseResult();
 private:
-
+	int h;
 	char **patterns;
 	char ***responses;
+	char *responseResult;
 	int patternOffset = 0;
 	int *responseOffsetD2;
-	
-	char *responseResult;
 
 	void zeroFill();
+	bool iRange(int, int);
 	void buildResponses();
 	void setPattern(const char*);
-	void setResponse(int offset, const char *res);
+	void setResponse(int, const char*);
 };
 
 #endif
