@@ -36,7 +36,7 @@ final class TeaAI
 				return;
 				break;
 			case "chat":
-				$input = "selamat malam";
+				$input = "bsk hari ap";
 				printf("Input: %s\n", $input);
 				printf("\nResponse: \n");
 				$a = tea_ai_chat(
