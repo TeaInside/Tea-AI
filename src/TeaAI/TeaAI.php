@@ -36,10 +36,14 @@ final class TeaAI
 				return;
 				break;
 			case "chat":
-				$input = "selamat pagi";
+				$input = "besok hari apa?";
 				printf("Input: %s\n", $input);
 				printf("\nResponse: \n");
-				$a = tea_ai_chat($input);
+				$a = tea_ai_chat(
+					$input,
+					"Ammar Faizi",
+					"mar"
+				);
 				var_dump($a);
 				break;
 			default:

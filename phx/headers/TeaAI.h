@@ -21,6 +21,7 @@ public:
 	~TeaAI();
 	bool check(Php::Value);
 	std::string getResponseResult();
+	void setName(std::string fullname, std::string nickname);
 private:
 	int h;
 	char **patterns;
@@ -29,11 +30,14 @@ private:
 	char *responseResult;
 	int patternOffset = 0;
 	int *responseOffsetD2;
+	std::string fullname;
+	std::string nickname;
 
 	void zeroFill();
 	bool iRange(int, int);
 	void buildResponses();
-	void setPattern(const char*);
+	std::string getDay(int);
+	void setPattern(const char*, int maxLen);
 	void setResponse(int, const char*);
 };
 

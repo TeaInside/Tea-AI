@@ -1,7 +1,7 @@
 
 #include "../headers/TeaAI.h"
 
-void TeaAI::setPattern(const char* pat) {
+void TeaAI::setPattern(const char* pat, int maxLen = -1) {
 	this->patterns[this->patternOffset] = (char*)malloc(strlen(pat) * sizeof(char*));
 	strcpy(this->patterns[this->patternOffset++], pat);
 }
@@ -115,4 +115,18 @@ void TeaAI::buildResponses() {
 		this->setResponse(3, "Selamat malam {cname}, apa kabar?");
 		this->setResponse(3, "Selamat malam juga {cname}");	
 	}
+
+	this->setPattern(
+		"/(?:^|[\\t\\s\n])(be?so?k)(?:[\\t\\s\\n]*)(ha?ri?)(?:[\\t\\s\\n]*)(apa?)(?:[\\t\\s\\n]|$)/Usi"
+	);
+	std::string tomorrow = "Besok hari " + this->getDay(
+		((int)Php::call("time")) + (3600 * 24)
+	);
+	this->setResponse(4, tomorrow.c_str());
+}
+
+std::string TeaAI::getDay(int unix) {
+	int n = atoi(Php::call("date", "N", unix));
+	printf("%d\n", n);
+	exit(0);
 }
