@@ -34,11 +34,11 @@ private:
 	std::string nickname;
 
 	void zeroFill();
-	bool iRange(int, int);
 	void buildResponses();
-	std::string getTime(int);
+	bool iRange(int, int);
 	std::string getDay(int);
-	void setPattern(const char*, int maxLen);
+	std::string phpDate(const char*, int);
+	void setPattern(const char*, int);
 	void setResponse(int, const char*);
 };
 

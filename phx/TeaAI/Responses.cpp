@@ -138,11 +138,11 @@ void TeaAI::buildResponses() {
 	this->setPattern(
 		"/((?:^|[\\t\\s\n])(se?ka?ra?n?g?)(?:[\\t\\s\\n]*)(ja?m)(?:[\\t\\s\\n]*)(be?ra?p?a?)([\\?\\.]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\n])(ja?m)(?:[\\t\\s\\n]*)(be?ra?p?a?)(?:[\\t\\s\\n]*)(se?ka?ra?n?g?)(?:[\\t\\s\\n]|$))/Usi"
 	);
-	this->setResponse(7, std::string("Sekarang jam "+this->getTime(unixtime)).c_str());
+	this->setResponse(7, std::string("Sekarang jam "+this->phpDate("h:i:s A T", unixtime)).c_str());
 }
 
-std::string TeaAI::getTime(int unixtime) {
-	return Php::call("date", "h:i:s A T", unixtime);
+std::string TeaAI::phpDate(const char *format, int unixtime) {
+	return Php::call("date", format, unixtime);
 }
 
 std::string TeaAI::getDay(int unixtime) {
