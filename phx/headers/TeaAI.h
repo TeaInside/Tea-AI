@@ -24,6 +24,7 @@ public:
 private:
 	int h;
 	char **patterns;
+	std::string lang;
 	char ***responses;
 	char *responseResult;
 	int patternOffset = 0;

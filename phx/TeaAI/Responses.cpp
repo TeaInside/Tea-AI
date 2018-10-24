@@ -35,7 +35,6 @@ void TeaAI::buildResponses() {
 	this->setPattern(
 		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(pa?gi?)(?:[\\t\\s\\n]|$)/Usi"
 	);
-
 	if (this->iRange(0, 11)) {
 		this->setResponse(0, "Selamat pagi!");
 		this->setResponse(0, "Selamat pagi {name}, apa kabar?");
@@ -99,7 +98,7 @@ void TeaAI::buildResponses() {
 	this->setPattern(
 		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(ma?l(a|e)?m)(?:[\\t\\s\\n]|$)/Usi"
 	);
-		if (this->iRange(0, 10)) {
+	if (this->iRange(0, 10)) {
 		this->setResponse(3, "Ini sudah pagi {cname}");
 		this->setResponse(3, "Selamat pagi!");
 		this->setResponse(3, "Pagi {cname}");
