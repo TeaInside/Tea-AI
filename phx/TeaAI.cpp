@@ -43,6 +43,12 @@ std::string TeaAI::getResponseResult() {
 	std::vector<std::string> r1;
 	std::vector<std::string> r2;	
 
+	r1.push_back(std::string("{name}"));
+	r2.push_back(std::string(this->fullname));
+
+	r1.push_back(std::string("{cname}"));
+	r2.push_back(std::string(this->nickname));
+
 	return Php::call(
 		"str_replace",
 		r1,
@@ -54,7 +60,7 @@ std::string TeaAI::getResponseResult() {
 Php::Value tea_ai_chat(Php::Parameters &p) {
 
 	TeaAI *t = new TeaAI;
-	t->setName(p[1], p[0]);
+	t->setName(p[1], p[2]);
 
 	if (t->check(p[0])) {
 		return t->getResponseResult();

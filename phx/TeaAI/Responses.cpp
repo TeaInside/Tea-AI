@@ -25,7 +25,7 @@ bool TeaAI::iRange(int start, int end) {
 }
 
 void TeaAI::buildResponses() {
-
+	int unixtime = (int)Php::call("time");
 	this->h = atoi(Php::call("date", "H"));
 	this->patterns = (char**)malloc(R_SIZE * sizeof(char*));
 	this->responses = (char***)malloc(R_SIZE * sizeof(char*));
@@ -33,7 +33,7 @@ void TeaAI::buildResponses() {
 	this->zeroFill();
 
 	this->setPattern(
-		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(pa?gi?)(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(pa?gi?)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
 	);
 	if (this->iRange(0, 11)) {
 		this->setResponse(0, "Selamat pagi!");
@@ -54,7 +54,7 @@ void TeaAI::buildResponses() {
 	}
 
 	this->setPattern(
-		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(siang)(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(siang)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
 	);
 	if (this->iRange(0, 10)) {
 		this->setResponse(1, "Ini masih pagi {cname}");
@@ -75,7 +75,7 @@ void TeaAI::buildResponses() {
 	}
 
 	this->setPattern(
-		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(sore)(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(sore)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
 	);
 	if (this->iRange(0, 10)) {
 		this->setResponse(2, "Ini masih pagi {cname}");
@@ -96,7 +96,7 @@ void TeaAI::buildResponses() {
 	}
 
 	this->setPattern(
-		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(ma?l(a|e)?m)(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(ma?l(a|e)?m)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
 	);
 	if (this->iRange(0, 10)) {
 		this->setResponse(3, "Ini sudah pagi {cname}");
@@ -116,18 +116,42 @@ void TeaAI::buildResponses() {
 		this->setResponse(3, "Selamat malam juga {cname}");	
 	}
 
+
 	this->setPattern(
-		"/(?:^|[\\t\\s\n])(be?so?k)(?:[\\t\\s\\n]*)(ha?ri?)(?:[\\t\\s\\n]*)(apa?)(?:[\\t\\s\\n]|$)/Usi"
+		"/((?:^|[\\t\\s\n])(be?so?k)(?:[\\t\\s\\n]*)(itu?)?(?:[\\t\\s\\n]*)(ha?ri?(nya?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\?\\.]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(be?so?k)([\\?\\.]*)?(?:[\\t\\s\\n]|$))/Usi"
 	);
-	std::string tomorrow = "Besok hari " + this->getDay(
-		((int)Php::call("time")) + (3600 * 24)
+	this->setResponse(4, std::string("Besok adalah hari "+this->getDay(unixtime+(3600*24))).c_str());
+
+
+	this->setPattern(
+		"/((?:^|[\\t\\s\n])(ke?ma?ri?n)(?:[\\t\\s\\n]*)(itu?)?(?:[\\t\\s\\n]*)(ha?ri?(nya?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\?\\.]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(ke?ma?ri?n)([\\?\\.]*)?(?:[\\t\\s\\n]|$))/Usi"
 	);
-	this->setResponse(4, tomorrow.c_str());
+	this->setResponse(5, std::string("Kemarin adalah hari "+this->getDay(unixtime-(3600*24))).c_str());
+
+
+	this->setPattern(
+		"/((?:^|[\\t\\s\n])((se?ka?ra?ng)(?:[\\t\\s\\n]*)(itu?)?)?(?:[\\t\\s\\n]*)(ha?ri?(nya?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\?]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(se?ka?ra?ng)?([\\?\\.]*)?(?:[\\t\\s\\n]|$))/Usi"
+	);
+	this->setResponse(6, std::string("Sekarang hari "+this->getDay(unixtime)).c_str());
 }
 
 std::string TeaAI::getDay(int unixtime) {
 	switch (atoi(Php::call("date", "N", unixtime))) {
-		case 0:
+		case 1:
+			return "Senin";
+		case 2:
+			return "Selasa";
+		case 3:
+			return "Rabu";
+		case 4:
+			return "Kamis";
+		case 5:
+			return "Jumat";
+		case 6:
+			return "Sabtu";
+		case 7:
 			return "Minggu";
+		default:
+			return "(null)";
 	}
 }
