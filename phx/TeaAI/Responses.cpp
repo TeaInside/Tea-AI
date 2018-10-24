@@ -132,7 +132,7 @@ void TeaAI::buildResponses() {
 	this->setPattern(
 		"/((?:^|[\\t\\s\n])((se?ka?ra?ng)?(?:[\\t\\s\\n]*)(itu?)?)?(?:[\\t\\s\\n]*)(ha?ri?(nya?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\?]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(se?ka?ra?ng)?([\\?\\.]*)?(?:[\\t\\s\\n]|$))/Usi"
 	);
-	this->setResponse(6, std::string("Sekarang hari "+this->getDay(unixtime)).c_str());	
+	this->setResponse(6, std::string("Sekarang hari "+this->getDay(unixtime)).c_str());
 
 
 	this->setPattern(
