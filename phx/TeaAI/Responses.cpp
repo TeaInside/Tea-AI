@@ -8,7 +8,7 @@ void TeaAI::setPattern(const char* pat, int maxLen = -1) {
 
 void TeaAI::setResponse(int offset, const char *res) {
 	if (this->responseOffsetD2[offset] == 0) {
-		this->responses[offset] = (char**)malloc(256 * sizeof(char*));
+		this->responses[offset] = (char**)malloc(5 * sizeof(char*));
 	}
 	this->responses[offset][this->responseOffsetD2[offset]] = (char*)malloc(strlen(res) * sizeof(char*));
 	strcpy(this->responses[offset][this->responseOffsetD2[offset]++], res);
