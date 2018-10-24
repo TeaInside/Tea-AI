@@ -2,11 +2,8 @@
 
 require __DIR__."/bootstrap/init.php";
 
-$in = "";
-
+$input = "jam berapa sekarang";
 $st = new TeaAI\TeaAI("chat");
-$st->setInput($in);
-
-$input = "bsk hari ap";
+$st->setInput($input);
 printf("Input: %s\n", $input);
 printf("\nResponse: \n%s\n", $st->run());

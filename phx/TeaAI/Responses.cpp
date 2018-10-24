@@ -133,6 +133,16 @@ void TeaAI::buildResponses() {
 		"/((?:^|[\\t\\s\n])((se?ka?ra?ng)?(?:[\\t\\s\\n]*)(itu?)?)?(?:[\\t\\s\\n]*)(ha?ri?(nya?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\?]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(se?ka?ra?ng)?([\\?\\.]*)?(?:[\\t\\s\\n]|$))/Usi"
 	);
 	this->setResponse(6, std::string("Sekarang hari "+this->getDay(unixtime)).c_str());	
+
+
+	this->setPattern(
+		"/((?:^|[\\t\\s\n])(se?ka?ra?n?g?)(?:[\\t\\s\\n]*)(ja?m)(?:[\\t\\s\\n]*)(be?ra?p?a?)([\\?\\.]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\n])(ja?m)(?:[\\t\\s\\n]*)(be?ra?p?a?)(?:[\\t\\s\\n]*)(se?ka?ra?n?g?)(?:[\\t\\s\\n]|$))/Usi"
+	);
+	this->setResponse(7, std::string("Sekarang jam "+this->getTime(unixtime)).c_str());
+}
+
+std::string TeaAI::getTime(int unixtime) {
+	return Php::call("date", "h:i:s A T", unixtime);
 }
 
 std::string TeaAI::getDay(int unixtime) {

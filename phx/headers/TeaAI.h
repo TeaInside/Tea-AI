@@ -36,6 +36,7 @@ private:
 	void zeroFill();
 	bool iRange(int, int);
 	void buildResponses();
+	std::string getTime(int);
 	std::string getDay(int);
 	void setPattern(const char*, int maxLen);
 	void setResponse(int, const char*);
