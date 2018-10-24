@@ -125,8 +125,9 @@ void TeaAI::buildResponses() {
 	this->setResponse(4, tomorrow.c_str());
 }
 
-std::string TeaAI::getDay(int unix) {
-	int n = atoi(Php::call("date", "N", unix));
-	printf("%d\n", n);
-	exit(0);
+std::string TeaAI::getDay(int unixtime) {
+	switch (atoi(Php::call("date", "N", unixtime))) {
+		case 0:
+			return "Minggu";
+	}
 }
