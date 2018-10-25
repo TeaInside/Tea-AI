@@ -335,9 +335,44 @@ final class Bin
 
 		if ($this->timeout === -1) {
 			$res = new TeaAI($this->cmd);
-			$res->run();
+			$handle = fopen($this->inputRes, "r");
+			$res->setInput(fread($handle, 2048));
+			fclose($handle);
+			print $res->run();
 		} else {
+			$pid = (int)pcntl_fork();
+			$key = ftok(__FILE__, 'd');
+			if ($pid === 0) {
+				$res = new TeaAI($this->cmd);
+				$handle = fopen($this->inputRes, "r");
+				$res->setInput(fread($handle, 2048));
+				fclose($handle);
+				$shm = shmop_open($key, "c", 0644, 2048);
+				shmop_write($shm, $res->run(), 0);
+				shmop_close($shm);
+				exit(0);
+			}
+			$status = null;
+			$i = 0;
+			while (true) {
+				sleep(1);
+				$i++;
+				pcntl_waitpid($pid, $status, WNOHANG);
 
+				if ($i == $this->timeout) {
+					// Send SIGKILL to child process.
+					shell_exec("kill -9 {$pid}");
+					print("Timeout");
+					exit(0);
+				} else if ($status === 0) {
+					break;
+				}
+			}
+			$shm = shmop_open($key, "c", 0644, 2048);
+			$res = shmop_read($shm, 0, 2048);
+			shmop_delete($shm);
+			shmop_close($shm);
+			print($res);
 		}
 	}
 
