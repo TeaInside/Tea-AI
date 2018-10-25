@@ -339,9 +339,13 @@ final class Bin
 
 		if ($this->timeout === -1) {
 			$res = new TeaAI($this->cmd);
+<<<<<<< HEAD
 			$handle = fopen($this->inputRes, "r");
 			$res->setInput(fread($handle, 2048));
 			fclose($handle);
+=======
+			$res->setInput(trim(file_get_contents("php://stdin")));
+>>>>>>> master
 			print $res->run();
 		} else {
 			$pid = (int)pcntl_fork();
