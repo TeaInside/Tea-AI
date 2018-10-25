@@ -335,7 +335,8 @@ final class Bin
 
 		if ($this->timeout === -1) {
 			$res = new TeaAI($this->cmd);
-			$res->run();
+			$res->setInput(trim(file_get_contents("php://stdin")));
+			print $res->run();
 		} else {
 
 		}
