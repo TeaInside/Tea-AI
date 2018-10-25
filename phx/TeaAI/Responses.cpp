@@ -32,8 +32,9 @@ void TeaAI::buildResponses() {
 	this->responseOffsetD2 = (int*)malloc(R_SIZE * sizeof(int*));
 	this->zeroFill();
 
+
 	this->setPattern(
-		"/(?:^|[\\t\\s\\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(pa?gi?)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|.{0,7}[\\t\\s\\n]{1,})(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(pa?gi?)([\\!]*)?(?:[\\t\\s\\n]{1,}.{0,7}|$)/Usi"
 	);
 	if (this->iRange(0, 11)) {
 		this->setResponse(0, "Selamat pagi!");
@@ -54,7 +55,7 @@ void TeaAI::buildResponses() {
 	}
 
 	this->setPattern(
-		"/(?:^|[\\t\\s\\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(siang)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|.{0,7}[\\t\\s\\n]{1,})(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(siang)([\\!]*)?(?:[\\t\\s\\n]{1,}.{0,7}|$)/Usi"
 	);
 	if (this->iRange(0, 10)) {
 		this->setResponse(1, "Ini masih pagi {cname}");
@@ -75,7 +76,7 @@ void TeaAI::buildResponses() {
 	}
 
 	this->setPattern(
-		"/(?:^|[\\t\\s\\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(sore)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|.{0,7}[\\t\\s\\n]{1,})(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(sore)([\\!]*)?(?:[\\t\\s\\n]{1,}.{0,7}|$)/Usi"
 	);
 	if (this->iRange(0, 10)) {
 		this->setResponse(2, "Ini masih pagi {cname}");
@@ -96,7 +97,7 @@ void TeaAI::buildResponses() {
 	}
 
 	this->setPattern(
-		"/(?:^|[\\t\\s\\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(ma?l(a|e)?m)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|.{0,7}[\\t\\s\\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(ma?l(a|e)?m)([\\!]*)?(?:[\\t\\s\\n].{0,7}|$)/Usi"
 	);
 	if (this->iRange(0, 10)) {
 		this->setResponse(3, "Ini sudah pagi {cname}");
@@ -145,6 +146,13 @@ void TeaAI::buildResponses() {
 		"/((?:^|[\\t\\s\\n])(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\t\\s\\n]*)(s(e|3)?k(a|4)?r(a|4)?n?(g|6)?|(i|1)n(i|1))(?:[\\w\\W]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(s(e|3)?k(a|4)?r(a|4)?n?(g|6)?|(i|1)n(i|1))(?:[\\t\\s\\n]*)(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\w\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
 	);
 	this->setResponse(8, std::string("Sekarang tanggal "+this->phpDate("d F Y", unixtime)).c_str());
+
+
+	this->setPattern(
+		"/(?:^|.{0,4}[\\t\\s\\n]{1,})(h(a|e)l{1,4}o{1,4})(?:[\\t\\s\\n]{1,}.{0,7}|$)/Usi"
+	);
+	this->setResponse(9, "Halo {name}");
+	this->setResponse(9, "Halo juga {name}");
 }
 
 std::string TeaAI::phpDate(const char *format, int unixtime) {
