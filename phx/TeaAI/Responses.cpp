@@ -149,10 +149,19 @@ void TeaAI::buildResponses() {
 
 
 	this->setPattern(
-		"/(?:^|.{0,4}[\\t\\s\\n]{1,})(h(a|e)l{1,4}o{1,4})(?:[\\t\\s\\n]{1,}.{0,7}|$)/Usi"
+		"/(?:^|.{0,4}[\\t\\s\\n]{1,})(h{1,2}(a|e){1,4}l{1,4}o{1,4})(?:[\\t\\s\\n]{1,}.{0,20}|$)/Usi"
 	);
 	this->setResponse(9, "Halo {name}");
 	this->setResponse(9, "Halo juga {name}");
+	this->setResponse(9, "Halo juga {name}, apa kabar?");
+
+
+	this->setPattern(
+		"/(?:^|.{0,4}[\\t\\s\\n]{1,})(h{1,4}a{1,4}(i|e){1,4})(?:[\\t\\s\\n]{1,}.{0,20}|$)/Usi"
+	);
+	this->setResponse(10, "Hai {name}");
+	this->setResponse(10, "Hai juga {name}");
+	this->setResponse(10, "Hai juga {name}, apa kabar?");
 }
 
 std::string TeaAI::phpDate(const char *format, int unixtime) {
