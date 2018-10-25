@@ -33,7 +33,7 @@ void TeaAI::buildResponses() {
 	this->zeroFill();
 
 	this->setPattern(
-		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(pa?gi?)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|[\\t\\s\\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(pa?gi?)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
 	);
 	if (this->iRange(0, 11)) {
 		this->setResponse(0, "Selamat pagi!");
@@ -54,7 +54,7 @@ void TeaAI::buildResponses() {
 	}
 
 	this->setPattern(
-		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(siang)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|[\\t\\s\\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(siang)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
 	);
 	if (this->iRange(0, 10)) {
 		this->setResponse(1, "Ini masih pagi {cname}");
@@ -75,7 +75,7 @@ void TeaAI::buildResponses() {
 	}
 
 	this->setPattern(
-		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(sore)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|[\\t\\s\\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(sore)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
 	);
 	if (this->iRange(0, 10)) {
 		this->setResponse(2, "Ini masih pagi {cname}");
@@ -96,7 +96,7 @@ void TeaAI::buildResponses() {
 	}
 
 	this->setPattern(
-		"/(?:^|[\\t\\s\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(ma?l(a|e)?m)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|[\\t\\s\\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(ma?l(a|e)?m)([\\!]*)?(?:[\\t\\s\\n]|$)/Usi"
 	);
 	if (this->iRange(0, 10)) {
 		this->setResponse(3, "Ini sudah pagi {cname}");
@@ -118,27 +118,33 @@ void TeaAI::buildResponses() {
 
 
 	this->setPattern(
-		"/((?:^|[\\t\\s\n])(be?so?k?)(?:[\\t\\s\\n]*)(itu?)?(?:[\\t\\s\\n]*)(ha?ri?(nya?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\?\\.]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(be?so?k?)([\\?\\.]*)?(?:[\\t\\s\\n]|$))/Usi"
+		"/((?:^|[\\t\\s\\n])(be?so?k?)(?:[\\t\\s\\n]*)(itu?)?(?:[\\t\\s\\n]*)(ha?ri?(nya?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\w\\W]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(be?so?k?)([\\w\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
 	);
 	this->setResponse(4, std::string("Besok adalah hari "+this->getDay(unixtime+(3600*24))).c_str());
 
 
 	this->setPattern(
-		"/((?:^|[\\t\\s\n])(ke?ma?ri?n?)(?:[\\t\\s\\n]*)(itu?)?(?:[\\t\\s\\n]*)(ha?ri?(nya?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\?\\.]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(ke?ma?ri?n?)([\\?\\.]*)?(?:[\\t\\s\\n]|$))/Usi"
+		"/((?:^|[\\t\\s\\n])(ke?ma?ri?n?)(?:[\\t\\s\\n]*)(itu?)?(?:[\\t\\s\\n]*)(ha?ri?(nya?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\w\\W]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(ke?ma?ri?n?)([\\w\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
 	);
 	this->setResponse(5, std::string("Kemarin adalah hari "+this->getDay(unixtime-(3600*24))).c_str());
 
 
 	this->setPattern(
-		"/((?:^|[\\t\\s\n])((se?ka?ra?ng)?(?:[\\t\\s\\n]*)(itu?)?)?(?:[\\t\\s\\n]*)(ha?ri?(nya?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\?]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(se?ka?ra?ng)?([\\?\\.]*)?(?:[\\t\\s\\n]|$))/Usi"
+		"/((?:^|[\\t\\s\\n])((se?ka?ra?ng|(i|1)n(i|1))?(?:[\\t\\s\\n]*)(itu?)?)?(?:[\\t\\s\\n]*)(ha?ri?(nya?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\?]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(se?ka?ra?ng|(i|1)n(i|1))?([\\w\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
 	);
 	this->setResponse(6, std::string("Sekarang hari "+this->getDay(unixtime)).c_str());
 
 
 	this->setPattern(
-		"/((?:^|[\\t\\s\n])(se?ka?ra?n?g?)(?:[\\t\\s\\n]*)(ja?m)(?:[\\t\\s\\n]*)(be?ra?p?a?)([\\?\\.]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\n])(ja?m)(?:[\\t\\s\\n]*)(be?ra?p?a?)(?:[\\t\\s\\n]*)(se?ka?ra?n?g?)(?:[\\t\\s\\n]|$))/Usi"
+		"/((?:^|[\\t\\s\\n])(s(e|3)?k(a|4)?r(a|4)?n?g?)(?:[\\t\\s\\n]*)(j(a|4)?m)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)([\\w\\W]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(j(a|4)?m)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\t\\s\\n]*)(s(e|3)?k(a|4)?r(a|4)?n?g?)([\\w\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
 	);
 	this->setResponse(7, std::string("Sekarang jam "+this->phpDate("h:i:s A T", unixtime)).c_str());
+
+
+	this->setPattern(
+		"/((?:^|[\\t\\s\\n])(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\t\\s\\n]*)(se?ka?ra?n?g?|(i|1)n(i|1))(?:[\\w\\W]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(se?ka?ra?n?g?|(i|1)n(i|1))(?:[\\t\\s\\n]*)(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\w\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
+	);
+	this->setResponse(8, std::string("Sekarang tanggal "+this->phpDate("d F Y", unixtime)).c_str());
 }
 
 std::string TeaAI::phpDate(const char *format, int unixtime) {
