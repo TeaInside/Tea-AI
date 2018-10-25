@@ -119,11 +119,7 @@ void TeaAI::buildResponses() {
 
 
 	this->setPattern(
-<<<<<<< HEAD
 		"/((?:^|[\\t\\s\\n])(b(e|3)?s(o|0)?k?)(?:[\\t\\s\\n]*)(itu?)?(?:[\\t\\s\\n]*)(h(a|4)?r(i|1)?(ny(a|4)?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\w\\W]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(b(e|3)?s(o|0)?k?)([\\w\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
-=======
-		"/((?:^|[\\t\\s\n])(b?e?so?k?)(?:[\\t\\s\\n]*)(itu?)?(?:[\\t\\s\\n]*)(ha?ri?(nya?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\?\\.]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(b?e?so?k?)([\\?\\.]*)?(?:[\\t\\s\\n]|$))/Usi"
->>>>>>> master
 	);
 	this->setResponse(4, std::string("Besok adalah hari "+this->getDay(unixtime+(3600*24))).c_str());
 
