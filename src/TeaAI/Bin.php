@@ -333,6 +333,10 @@ final class Bin
 			$this->err("You need to provide an input resource!");
 		}
 
+		if (!is_string($this->cmd)) {
+			$this->err("Command not is defined");
+		}
+
 		if ($this->timeout === -1) {
 			$res = new TeaAI($this->cmd);
 			$handle = fopen($this->inputRes, "r");
