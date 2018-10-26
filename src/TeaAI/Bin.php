@@ -1,5 +1,5 @@
 <?php
-
+declare(ticks=1);
 namespace TeaAI;
 
 use TeaAI\Exceptions\BinException;
@@ -340,21 +340,25 @@ final class Bin
 		if ($this->timeout === -1) {
 			$res = new TeaAI($this->cmd);
 			$handle = fopen($this->inputRes, "r");
-			$res->setInput(fread($handle, 2048));
+			$res->setInput(fread($handle, 4096));
 			fclose($handle);
 			print $res->run();
 		} else {
-			$pid = (int)pcntl_fork();
+			pcntl_signal(SIGCHLD, SIG_IGN);
+			$pid = pcntl_fork();
 			$key = ftok(__FILE__, 'd');
 			if ($pid === 0) {
+				print("The child is started its execution\n");
+				sleep(3);
 				$res = new TeaAI($this->cmd);
 				$handle = fopen($this->inputRes, "r");
-				$res->setInput(fread($handle, 2048));
+				$res->setInput(fread($handle, 4096));
 				fclose($handle);
-				$shm = shmop_open($key, "c", 0644, 2048);
+				$shm = shmop_open($key, "c", 0644, 4096);
 				shmop_write($shm, $res->run(), 0);
 				shmop_close($shm);
-				exit(0);
+				print("The child has finished its execution\n");
+				exit(2);
 			}
 			$status = null;
 			$i = 0;
@@ -362,18 +366,18 @@ final class Bin
 				sleep(1);
 				$i++;
 				pcntl_waitpid($pid, $status, WNOHANG);
-
+				var_dump($status);
 				if ($i == $this->timeout) {
 					// Send SIGKILL to child process.
 					shell_exec("kill -9 {$pid}");
-					print("Timeout");
+					print("Timeout\n");
 					exit(0);
 				} else if ($status === 0) {
-					break;
+					//break;
 				}
 			}
-			$shm = shmop_open($key, "c", 0644, 2048);
-			$res = shmop_read($shm, 0, 2048);
+			$shm = shmop_open($key, "c", 0644, 4096);
+			$res = shmop_read($shm, 0, 4096);
 			shmop_delete($shm);
 			shmop_close($shm);
 			print($res);
