@@ -158,7 +158,7 @@ void TeaAI::buildResponses() {
 		"/(?:^|.{0.10}[\\t\\s\\n]{1,})(a?pa?)(?:[\\t\\s\\n]*)(ka?ba?r)(?:[\\w\\W]*)?(?:[\\t\\s\\n]|$)/Usi"
 	);
 	this->setResponse(i, "Kabar baik");
-	this->setResponse(i, "Baik {}");
+	this->setResponse(i, "Baik {cname}");
 	i++;
 
 
