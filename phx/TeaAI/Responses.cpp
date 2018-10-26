@@ -155,6 +155,13 @@ void TeaAI::buildResponses() {
 
 
 	this->setPattern(
+		"/((?:^|[\\t\\s\\n])(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\t\\s\\n]*)(b(e|3)?s(o|0)?k)(?:[\\w\\W]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(b(e|3)?s(o|0)?k)(?:[\\t\\s\\n]*)(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\w\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
+	);
+	this->setResponse(i, std::string("Sekarang tanggal "+this->phpDate("d F Y", unixtime)).c_str());
+	i++;
+
+
+	this->setPattern(
 		"/(?:^|.{0.10}[\\t\\s\\n]{1,})(a?pa?)(?:[\\t\\s\\n]*)(ka?ba?r)(?:[\\w\\W]*)?(?:[\\t\\s\\n]|$)/Usi"
 	);
 	this->setResponse(i, "Kabar baik");
