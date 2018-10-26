@@ -17,14 +17,16 @@ COMPILER_FLAGS		=	-Wall -g -c -O3 -std=c++11 -fpic -o
 LINKER_FLAGS		=	-shared
 LINKER_DEPENDENCIES	=	-lphpcpp
 
-RM					=	rm -f
-CP					=	cp -f
-LN					=	ln -sf
-MKDIR				=	mkdir -p
+RM					=	rm -vf
+CP					=	cp -vf
+LN					=	ln -vsf
+MKDIR				=	mkdir -vp
 
 #SOURCES				=	$(wildcard src/*.cpp)
 SOURCES				=	$(shell find phx/ -name '*.cpp')
 OBJECTS				=	$(SOURCES:%.cpp=%.o)
+
+SHARED_OBJECT_TO_BE_COMMITED = teaai_shared
 
 all:					${OBJECTS} ${EXTENSION}
 
@@ -33,6 +35,9 @@ ${EXTENSION}:			${OBJECTS}
 
 ${OBJECTS}:
 						${COMPILER} ${COMPILER_FLAGS} $@ ${@:%.o=%.cpp}
+
+deploy:
+						${CP} ${EXTENSION} ${SHARED_OBJECT_TO_BE_COMMITED}
 
 install:		
 						${CP} ${EXTENSION} ${EXTENSION_DIR}
@@ -43,7 +48,7 @@ install:
 						${LN} ${INI_DIR}/${PRIORITY}-${INI} /etc/php/${PHP_VERSION}/embed/conf.d
 						${LN} ${INI_DIR}/${PRIORITY}-${INI} /etc/php/${PHP_VERSION}/phpdbg/conf.d
 						${RM} ${EXTENSION} ${OBJECTS}
-				
-clean:
-						${RM} ${EXTENSION} ${OBJECTS}
 
+
+clean:
+						${RM} ${OBJECTS} ${EXTENSION}
