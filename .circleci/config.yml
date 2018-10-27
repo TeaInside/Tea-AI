@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: 7.2-zts-node-browsers-legacy
+      - image: circleci/php:7.2-zts-node-browsers-legacy
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
