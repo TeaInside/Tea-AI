@@ -350,13 +350,13 @@ final class Bin
 			if ($pid === 0) {
 				print("The child is started its execution\n");
 				sleep(3);
-				$res = new TeaAI($this->cmd);
-				$handle = fopen($this->inputRes, "r");
-				$res->setInput(fread($handle, 4096));
-				fclose($handle);
-				$shm = shmop_open($key, "c", 0644, 4096);
-				shmop_write($shm, $res->run(), 0);
-				shmop_close($shm);
+				// $res = new TeaAI($this->cmd);
+				// $handle = fopen($this->inputRes, "r");
+				// $res->setInput(fread($handle, 4096));
+				// fclose($handle);
+				// $shm = shmop_open($key, "c", 0644, 4096);
+				// shmop_write($shm, $res->run(), 0);
+				// shmop_close($shm);
 				print("The child has finished its execution\n");
 				exit(2);
 			}
