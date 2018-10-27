@@ -15,7 +15,7 @@ This is a simple AI project that written in PHP and C++.
 ## Installation for Ubuntu 16.xx / 18.xx
 
 ```sh
-apt-add-repository ppa:ondrej/php -y && apt update -y && apt install libphp7.2-embed php7.2 php7.2-bcmath php7.2-bz2 php7.2-cli php7.2-common php7.2-curl php7.2-dev php7.2-enchant php7.2-fpm php7.2-gd php7.2-gmp php7.2-json php7.2-ldap php7.2-mbstring php7.2-opcache php7.2-phpdbg php7.2-pspell php7.2-readline php7.2-recode php7.2-sybase php7.2-tidy php7.2-xml php7.2-xmlrpc php7.2-zip -y
+sudo apt-add-repository ppa:ondrej/php -y && sudo apt update -y && sudo apt install libphp7.2-embed php7.2 php7.2-bcmath php7.2-bz2 php7.2-cli php7.2-common php7.2-curl php7.2-dev php7.2-enchant php7.2-fpm php7.2-gd php7.2-gmp php7.2-json php7.2-ldap php7.2-mbstring php7.2-opcache php7.2-phpdbg php7.2-pspell php7.2-readline php7.2-recode php7.2-sybase php7.2-tidy php7.2-xml php7.2-xmlrpc php7.2-zip -y
 
 sudo wget https://getcomposer.org/composer.phar -O /usr/bin/composer && sudo chmod +x /usr/bin/composer
 
