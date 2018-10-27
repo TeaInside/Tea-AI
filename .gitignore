@@ -7,5 +7,5 @@
 /vendor/
 /.phpintel/
 /.gdb_history
-/peda-session-*.txt
 /serres-component/
+/peda-session-*.txt
