@@ -1,16 +1,14 @@
 # Tea AI
 > An Artificial Intelligence.
 
-![][code-size]
-![][repo-size]
 ![][GitHub-issues]
 ![][GitHub-forks]
 ![][GitHub-stars]
 ![][GitHub-license]
+[![Telegram](https://img.shields.io/badge/Telegram-Account-blue.svg)](https://t.me/systemd_journald)
 
 This is a simple AI project that written in PHP and C++.
 
-![](header.png)
 
 ## Installation for Ubuntu 16.xx / 18.xx
 
@@ -41,8 +39,6 @@ php -d "extension=$(pwd)/teaai.so" main.php
 ```
 
 <!-- Markdown link & img dfn's -->
-[code-size]: https://img.shields.io/github/languages/code-size/badges/shields.svg
-[repo-size]: https://img.shields.io/github/repo-size/badges/shields.svg
 [GitHub-issues]: https://img.shields.io/github/issues/TeaInside/Tea-AI.svg
 [GitHub-forks]: https://img.shields.io/github/forks/TeaInside/Tea-AI.svg
 [GitHub-stars]:	https://img.shields.io/github/stars/TeaInside/Tea-AI.svg
