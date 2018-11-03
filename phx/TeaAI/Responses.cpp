@@ -40,27 +40,8 @@ void TeaAI::buildResponses() {
 	this->setResponse(i, "Baik {cname}");
 	i++;
 
-
 	this->setPattern(
-		"/(?:^|.{0,4}[\\t\\s\\n]{1,})(h{1,2}(a|e){1,4}l{1,4}o{1,4})(?:[\\t\\s\\n]{1,}.{0,20}|$)/Usi"
-	);
-	this->setResponse(i, "Halo {name}");
-	this->setResponse(i, "Halo juga {name}");
-	this->setResponse(i, "Halo juga {name}, apa kabar?");
-	i++;
-
-
-	this->setPattern(
-		"/(?:^|.{0,4}[\\t\\s\\n]{1,})(h{1,4}a{1,4}(i|e){1,4})(?:[\\t\\s\\n]{1,}.{0,20}|$)/Usi"
-	);
-	this->setResponse(i, "Hai {name}");
-	this->setResponse(i, "Hai juga {name}");
-	this->setResponse(i, "Hai juga {name}, apa kabar?");
-	i++;
-
-
-	this->setPattern(
-		"/(?:^|.{0,7}[\\t\\s\\n]{1,})(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(pa?gi?)([\\!]*)?(?:[\\t\\s\\n]{1,}.{0,7}|$)/Usi"
+		"/(?:^|.{0,7}[\\t\\s\\n]{1,})(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(pa?gi?)([\\W]*)(?:[\\t\\s\\n]{1,}.{0,7}|$)/Usi"
 	);
 	if (this->iRange(0, 11)) {
 		this->setResponse(i, "Selamat pagi!");
@@ -193,6 +174,22 @@ void TeaAI::buildResponses() {
 	this->setResponse(i, std::string("Sekarang tanggal "+this->phpDate("d F Y", unixtime)).c_str());
 	i++;
 
+	this->setPattern(
+		"/(?:^|.{0,4}[\\t\\s\\n]{1,})(h{1,2}(a|e){1,4}l{1,4}o{1,4})(?:[\\t\\s\\n]{1,}.{0,20}|$)/Usi"
+	);
+	this->setResponse(i, "Halo {name}");
+	this->setResponse(i, "Halo juga {name}");
+	this->setResponse(i, "Halo juga {name}, apa kabar?");
+	i++;
+
+
+	this->setPattern(
+		"/(?:^|.{0,4}[\\t\\s\\n]{1,})(h{1,4}a{1,4}(i|e){1,4})(?:[\\t\\s\\n]{1,}.{0,20}|$)/Usi"
+	);
+	this->setResponse(i, "Hai {name}");
+	this->setResponse(i, "Hai juga {name}");
+	this->setResponse(i, "Hai juga {name}, apa kabar?");
+	i++;
 }
 
 std::string TeaAI::phpDate(const char *format, int unixtime) {
