@@ -1,7 +1,7 @@
 
 #include "../headers/TeaAI.h"
 
-void TeaAI::setPattern(const char* pat, int maxLen = -1) {
+void TeaAI::setPattern(const char* pat) {
 	this->patterns[this->patternOffset] = (char*)malloc(strlen(pat) * sizeof(char*));
 	strcpy(this->patterns[this->patternOffset++], pat);
 }
@@ -32,13 +32,6 @@ void TeaAI::buildResponses() {
 	this->responses = (char***)malloc(R_SIZE * sizeof(char*));
 	this->responseOffsetD2 = (int*)malloc(R_SIZE * sizeof(int*));
 	this->zeroFill();
-
-	this->setPattern(
-		"/(?:^|.{0.10}[\\t\\s\\n]{1,})(a?pa?)(?:[\\t\\s\\n]*)(ka?ba?r)(?:[\\W]*)?(?:[\\t\\s\\n]|$)/Usi"
-	);
-	this->setResponse(i, "Kabar baik");
-	this->setResponse(i, "Baik {cname}");
-	i++;
 
 	this->setPattern(
 		"/(?:^|.{0,7}[\\t\\s\\n]{1,})(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(pa?gi?)([\\W]*)(?:[\\t\\s\\n]{1,}.{0,7}|$)/Usi"
@@ -172,6 +165,21 @@ void TeaAI::buildResponses() {
 		"/((?:^|[\\t\\s\\n])(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\t\\s\\n]*)(s(e|3)?k(a|4)?r(a|4)?n?(g|6)?|(i|1)n(i|1))(?:[\\W]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(s(e|3)?k(a|4)?r(a|4)?n?(g|6)?|(i|1)n(i|1))(?:[\\t\\s\\n]*)(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
 	);
 	this->setResponse(i, std::string("Sekarang tanggal "+this->phpDate("d F Y", unixtime)).c_str());
+	i++;
+
+
+	this->setPattern(
+		"/((?:^|.{0,20}[\\t\\s\\n])(te?ri?ma?)[\\t\\s\\n]*(ka?si?h)(?:[\\t\\s\\n]*.{0,20}|$))|((?:^|.{0,20}[\\t\\s\\n])(ma?ka?si?h)(?:[\\t\\s\\n]*.{0,20}|$))/Usi"
+	);
+	this->setResponse(i, "Sama-sama");
+	this->setResponse(i, "Terima kasih kembali");
+	i++;
+
+	this->setPattern(
+		"/(?:^|.{0.10}[\\t\\s\\n]{1,})(a?pa?)(?:[\\t\\s\\n]*)(ka?ba?r)(?:[\\W]*)?(?:[\\t\\s\\n]|$)/Usi"
+	);
+	this->setResponse(i, "Kabar baik");
+	this->setResponse(i, "Baik {cname}");
 	i++;
 
 	this->setPattern(
