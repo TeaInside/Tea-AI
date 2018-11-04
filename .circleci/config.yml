@@ -20,7 +20,7 @@ jobs:
           - v1-dependencies-
       
       - restore_cache:
-        keys:
+          keys:
           - libphpcpp-{{ checksum "/tmp/phpcpp" }}
           - libphpcpp-
 
