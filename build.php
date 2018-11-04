@@ -9,17 +9,17 @@ $descriptorspec = [
 
 $sh = function () {
 	$a = [
-		"libphpcpp.a.2.1.1",
-		"libphpcpp.a",
-		"libphpcpp.so",
-		"libphpcpp.so.2.1.1",
-		"libphpcpp.so.2.1",
+		"/usr/lib/libphpcpp.a.2.1.1",
+		"/usr/lib/libphpcpp.a",
+		"/usr/lib/libphpcpp.so",
+		"/usr/lib/libphpcpp.so.2.1.1",
+		"/usr/lib/libphpcpp.so.2.1",
 		"/usr/include/phpcpp",
 		"/usr/include/phpcpp.h"
 	];
 	$c = true;
 	foreach ($a as $v) {
-		$c = $c && file_exists("/usr/lib/{$v}");
+		$c = $c && file_exists($v);
 		if (!$c) {
 			return false;
 		}
