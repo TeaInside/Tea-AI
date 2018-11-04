@@ -2,7 +2,7 @@
 
 require __DIR__."/bootstrap/init.php";
 
-$input = "makasih";
+$input = "selamat makan";
 $st = new TeaAI\TeaAI("chat");
 $st->setInput($input);
 printf("Input: %s\n", $input);

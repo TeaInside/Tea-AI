@@ -169,6 +169,13 @@ void TeaAI::buildResponses() {
 
 
 	this->setPattern(
+		"/(?:^|.{0,20}[\\t\\s\\n])(se?la?ma?t)(?:[\\t\\s\\n]*)(ma?ka?n)(?:[\\t\\s\\n]*.{0,20}|$)/Usi"
+	);
+	this->setResponse(i, "Jangan lupa kerja sebelum makan");
+	i++;
+
+
+	this->setPattern(
 		"/((?:^|.{0,20}[\\t\\s\\n])(te?ri?ma?)[\\t\\s\\n]*(ka?si?h)(?:[\\t\\s\\n]*.{0,20}|$))|((?:^|.{0,20}[\\t\\s\\n])(ma?ka?si?h)(?:[\\t\\s\\n]*.{0,20}|$))/Usi"
 	);
 	this->setResponse(i, "Sama-sama");
