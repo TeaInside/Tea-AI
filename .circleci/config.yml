@@ -38,6 +38,8 @@ jobs:
       - save_cache:
           paths:
             - /tmp/phpcpp
+            - /usr/include/phpcpp
+            - /usr/include/phpcpp.h
             - /usr/lib/libphpcpp.a
             - /usr/lib/libphpcpp.so
             - /usr/lib/libphpcpp.so.2.1

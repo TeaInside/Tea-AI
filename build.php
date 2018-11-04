@@ -8,7 +8,15 @@ $descriptorspec = [
 ];
 
 $sh = function () {
-	$a = ["libphpcpp.a.2.1.1", "libphpcpp.a", "libphpcpp.so", "libphpcpp.so.2.1.1", "libphpcpp.so.2.1"];
+	$a = [
+		"libphpcpp.a.2.1.1",
+		"libphpcpp.a",
+		"libphpcpp.so",
+		"libphpcpp.so.2.1.1",
+		"libphpcpp.so.2.1",
+		"/usr/include/phpcpp",
+		"/usr/include/phpcpp.h"
+	];
 	$c = true;
 	foreach ($a as $v) {
 		$c = $c && file_exists("/usr/lib/{$v}");
