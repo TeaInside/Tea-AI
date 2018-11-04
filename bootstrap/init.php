@@ -19,7 +19,7 @@ if (! defined("__TEA_AI_INIT")):
 
 	// Debug only
 	// define("DEBUG_VERBOSE", true);
-	require __DIR__."/debug/debugger.php";
+	// require __DIR__."/debug/debugger.php";
 
 
 	date_default_timezone_set(DEFAULT_TIMEZONE);
