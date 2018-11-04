@@ -21,10 +21,10 @@ $sh = function () {
 	foreach ($a as $v) {
 		$c = $c && file_exists($v);
 		if (!$c) {
-			return false;
+			return true;
 		}
 	}
-	return true;
+	return false;
 };
 
 $commands = [
