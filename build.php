@@ -34,7 +34,7 @@ $commands = [
 	],
 	[
 		($sh()),
-		"cd /tmp && tar -xf phpcpp && cd *PHP* && make -j 5 && sudo make install -j 5"
+		"cd /tmp && sudo tar -xf phpcpp && cd *PHP* && make -j 5 && sudo make install -j 5"
 	],
 	[
 		true,

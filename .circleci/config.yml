@@ -26,9 +26,9 @@ jobs:
       # - run: wget https://api.github.com/repos/CopernicaMarketingSoftware/PHP-CPP/tarball/v2.1.2 -O /tmp/phpcpp
       # - run: cd /tmp && tar -xf phpcpp && cd *PHP* && make -j 5 && sudo make install -j 5
       # - run: cd ~/repo && composer install -n --prefer-dist -vvv
-      - run: sudo php build.php
-      - run: sudo make -j 4
-      - run: sudo php -d "extension=$(pwd)/teaai.so" main.php
+      - run: php build.php
+      - run: make -j 4
+      - run: php -d "extension=$(pwd)/teaai.so" main.php
 
       - save_cache:
           paths:
@@ -47,5 +47,5 @@ jobs:
             - /usr/lib/libphpcpp.so.2.1.1
           key: libphpcpp-so
 
-      - run: sudo php ~/repo/vendor/bin/phpunit
+      - run: php ~/repo/vendor/bin/phpunit
       # - run: php ~/repo/deploy.php
