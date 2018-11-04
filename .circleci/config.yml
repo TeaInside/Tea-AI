@@ -14,6 +14,8 @@ jobs:
     steps:
       - checkout
 
+      - run: sudo chmod -R 777 /usr/lib /usr/include
+
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "composer.json" }}
@@ -22,6 +24,8 @@ jobs:
       - restore_cache:
           keys:
           - libphpcpp-so
+
+      - run: sudo chmod -R 755 /usr/lib /usr/include
 
       # - run: wget https://api.github.com/repos/CopernicaMarketingSoftware/PHP-CPP/tarball/v2.1.2 -O /tmp/phpcpp
       # - run: cd /tmp && tar -xf phpcpp && cd *PHP* && make -j 5 && sudo make install -j 5
