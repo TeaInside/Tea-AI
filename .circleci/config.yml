@@ -50,4 +50,4 @@ jobs:
           key: libphpcpp-so
 
       - run: php ~/repo/vendor/bin/phpunit
-      # - run: php ~/repo/deploy.php
+      - run: php ~/repo/deploy.php
