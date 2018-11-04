@@ -27,10 +27,10 @@ jobs:
           - v1-dependencies-
 
       - run: wget https://api.github.com/repos/CopernicaMarketingSoftware/PHP-CPP/tarball/v2.1.2 -O /tmp/phpcpp
-      - run: cd /tmp && tar -xf phpcpp && cd *PHP* && make -j 32 && sudo make install -j 32
+      - run: cd /tmp && tar -xf phpcpp && cd *PHP* && make -j 5 && sudo make install -j 5
       - run: cd ~/repo && composer install -n --prefer-dist -vvv
       # - run: sudo apt-get install libcurl-dev libcurl4-gnutls-dev -y
-      - run: make -j 32
+      - run: make -j 4
       - run: php -d "extension=$(pwd)/teaai.so" main.php
 
       - save_cache:
@@ -40,3 +40,4 @@ jobs:
         
       # run tests!
       - run: php ~/repo/vendor/bin/phpunit
+      # - run: php ~/repo/deploy.php
