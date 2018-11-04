@@ -1,19 +1,14 @@
+#
 # PHP CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-php/ for more details
 #
+
 version: 2
 jobs:
   build:
     docker:
-      # specify the version you desire here
       - image: circleci/php:7.2-zts-node-browsers-legacy
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/mysql:9.4
-
     working_directory: ~/repo
 
     steps:
@@ -23,13 +18,11 @@ jobs:
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "composer.json" }}
-          # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
       - run: wget https://api.github.com/repos/CopernicaMarketingSoftware/PHP-CPP/tarball/v2.1.2 -O /tmp/phpcpp
       - run: cd /tmp && tar -xf phpcpp && cd *PHP* && make -j 5 && sudo make install -j 5
       - run: cd ~/repo && composer install -n --prefer-dist -vvv
-      # - run: sudo apt-get install libcurl-dev libcurl4-gnutls-dev -y
       - run: make -j 4
       - run: php -d "extension=$(pwd)/teaai.so" main.php
 
@@ -37,7 +30,6 @@ jobs:
           paths:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
-        
-      # run tests!
+
       - run: php ~/repo/vendor/bin/phpunit
       # - run: php ~/repo/deploy.php
