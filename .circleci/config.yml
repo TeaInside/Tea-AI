@@ -21,8 +21,7 @@ jobs:
       
       - restore_cache:
           keys:
-          - libphpcpp-{{ checksum "/tmp/phpcpp" }}
-          - libphpcpp-
+          - libphpcpp
 
       # - run: wget https://api.github.com/repos/CopernicaMarketingSoftware/PHP-CPP/tarball/v2.1.2 -O /tmp/phpcpp
       # - run: cd /tmp && tar -xf phpcpp && cd *PHP* && make -j 5 && sudo make install -j 5
@@ -39,7 +38,7 @@ jobs:
       - save_cache:
           paths:
             - /tmp
-          key: libphpcpp-{{ checksum "/tmp/phpcpp" }}
+          key: libphpcpp
 
       - run: php ~/repo/vendor/bin/phpunit
       # - run: php ~/repo/deploy.php
