@@ -29,7 +29,7 @@ jobs:
       - run: wget https://api.github.com/repos/CopernicaMarketingSoftware/PHP-CPP/tarball/v2.1.2 -O /tmp/phpcpp
       - run: cd /tmp && tar -xf phpcpp && cd *PHP* && make -j 32 && sudo make install -j 32
       - run: cd ~/repo && composer install -n --prefer-dist -vvv
-      - run: sudo apt-get install libcurl-dev libcurl4-gnutls-dev -y
+      # - run: sudo apt-get install libcurl-dev libcurl4-gnutls-dev -y
       - run: make -j 32
       - run: php -d "extension=$(pwd)/teaai.so" main.php
 
@@ -39,4 +39,4 @@ jobs:
           key: v1-dependencies-{{ checksum "composer.json" }}
         
       # run tests!
-      # - run: php phpunit
+      - run: php phpunit
