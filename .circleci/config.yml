@@ -25,6 +25,7 @@ jobs:
           keys:
           - libphpcpp-so
 
+      - run: sudo chown -R root:root /usr/lib /usr/include
       - run: sudo chmod -R 755 /usr/lib /usr/include
 
       # - run: wget https://api.github.com/repos/CopernicaMarketingSoftware/PHP-CPP/tarball/v2.1.2 -O /tmp/phpcpp
