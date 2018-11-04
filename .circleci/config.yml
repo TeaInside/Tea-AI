@@ -13,21 +13,18 @@ jobs:
 
     steps:
       - checkout
-
+      
       - run: sudo chmod -R 777 /usr/lib /usr/include
-
+      
       - restore_cache:
           keys:
           - v1-dependencies-{{ checksum "composer.json" }}
           - v1-dependencies-
-      
+
       - restore_cache:
           keys:
           - libphpcpp-so
 
-      # - run: wget https://api.github.com/repos/CopernicaMarketingSoftware/PHP-CPP/tarball/v2.1.2 -O /tmp/phpcpp
-      # - run: cd /tmp && tar -xf phpcpp && cd *PHP* && make -j 5 && sudo make install -j 5
-      # - run: cd ~/repo && composer install -n --prefer-dist -vvv
       - run: php build.php
       - run: make -j 4
       - run: php -d "extension=$(pwd)/teaai.so" main.php
