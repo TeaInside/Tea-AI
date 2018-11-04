@@ -25,7 +25,7 @@ $commands = [
 		"wget https://api.github.com/repos/CopernicaMarketingSoftware/PHP-CPP/tarball/v2.1.2 -O /tmp/phpcpp"
 	],
 	[
-		($sh()b),
+		($sh()),
 		"cd /tmp && tar -xf phpcpp && cd *PHP* && make -j 5 && sudo make install -j 5"
 	],
 	[
