@@ -162,18 +162,31 @@ void TeaAI::buildResponses() {
 
 
 	this->setPattern(
-		"/((?:^|[\\t\\s\\n])(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\t\\s\\n]*)(s(e|3)?k(a|4)?r(a|4)?n?(g|6)?|(i|1)n(i|1))(?:[\\W]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(s(e|3)?k(a|4)?r(a|4)?n?(g|6)?|(i|1)n(i|1))(?:[\\t\\s\\n]*)(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
+		"/((?:^|^.{1,15}[\\t\\s\\n])(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\t\\s\\n]*)(s(e|3)?k(a|4)?r(a|4)?n?(g|6)?|(i|1)n(i|1))(?:[\\W]*)?(?:[\\t\\s\\n].{1,10}$|$))|((?:^|^.{1,15}[\\t\\s\\n])(s(e|3)?k(a|4)?r(a|4)?n?(g|6)?|(i|1)n(i|1))(?:[\\t\\s\\n]*)(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\W]*)?(?:[\\t\\s\\n].{1,10}$|$))/Usi"
 	);
 	this->setResponse(i, std::string("Sekarang tanggal "+this->phpDate("d F Y", unixtime)).c_str());
 	i++;
 
 
 	this->setPattern(
-		"/(?:^|.{0,20}[\\t\\s\\n])(se?la?ma?t)(?:[\\t\\s\\n]*)(ma?ka?n)(?:[\\t\\s\\n]*.{0,20}|$)/Usi"
+		"/((?:^.{0,20}[\\t\\s\\n]+)(bu?la?n?)(?:[\\t\\s\\n]*)(a?pa?)(?:[\\t\\s\\n]*)(i?ni?)(?:[\\t\\s\\n]+.{0,20}$))|((?:^.{0,20}[\\t\\s\\n]+)(bu?la?n?)(?:[\\t\\s\\n]*)(a?pa?)(?:[\\t\\s\\n]*)(se?ka?ra?n?g)(?:[\\t\\s\\n]+.{0,20}$))/Usi"
+	);
+	this->setResponse(i, std::string("Sekarang bulan "+this->phpDate("F", unixtime)).c_str());
+	i++;
+
+
+	this->setPattern(
+		"/(?:^.{0,20}[\\t\\s\\n]+)(se?la?ma?t)(?:[\\t\\s\\n]+)(ma?ka?n)(?:[\\t\\s\\n]+.{0,20}$)/Usi"
 	);
 	this->setResponse(i, "Jangan lupa kerja sebelum makan");
 	i++;
 
+
+	this->setPattern(
+		"/(^.{0,15})((awk|awko|wk){2,}|(ha){2,}|(hi){2,}|(xi){2,})(.{0,15}$)/Usi"
+	);
+	this->setResponse(i, "Dilarang ketawa!");
+	i++;
 
 	this->setPattern(
 		"/((?:^|.{0,20}[\\t\\s\\n])(te?ri?ma?)[\\t\\s\\n]*(ka?si?h)(?:[\\t\\s\\n]*.{0,20}|$))|((?:^|.{0,20}[\\t\\s\\n])(ma?ka?si?h)(?:[\\t\\s\\n]*.{0,20}|$))/Usi"
