@@ -176,7 +176,7 @@ void TeaAI::buildResponses() {
 
 
 	this->setPattern(
-		"/(?:^.{0,20}[\\t\\s\\n]+)(se?la?ma?t)(?:[\\t\\s\\n]+)(ma?ka?n)(?:[\\t\\s\\n]+.{0,20}$)/Usi"
+		"/(?:^.{0,20}[\\t\\s\\n]*)(se?la?ma?t)(?:[\\t\\s\\n]+)(ma?ka?n)(?:[\\t\\s\\n]*.{0,20}$)/Usi"
 	);
 	this->setResponse(i, "Jangan lupa kerja sebelum makan");
 	i++;
@@ -186,7 +186,9 @@ void TeaAI::buildResponses() {
 		"/(^.{0,15})((awk|awko|wk){2,}|(ha){2,}|(hi){2,}|(xi){2,})(.{0,15}$)/Usi"
 	);
 	this->setResponse(i, "Dilarang ketawa!");
+	this->setResponse(i, "GVZ10get_moduleE9extension_ZZ10get_moduleE9extension_GLOBAL__sub_I_main.cpp_ZStL8__ioinit_GLOBAL__sub_I_Responses.cpp_GLOBAL__sub_I_Te");
 	i++;
+
 
 	this->setPattern(
 		"/((?:^|.{0,20}[\\t\\s\\n])(te?ri?ma?)[\\t\\s\\n]*(ka?si?h)(?:[\\t\\s\\n]*.{0,20}|$))|((?:^|.{0,20}[\\t\\s\\n])(ma?ka?si?h)(?:[\\t\\s\\n]*.{0,20}|$))/Usi"
