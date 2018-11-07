@@ -8,6 +8,23 @@ require __DIR__."/../init.php";
 
 class A1_Test extends TestCase
 {
+	/**
+	 * @return void
+	 */
+	public function testFrameworkMatcher(): void
+	{
+		$strLs = [
+			"Saya pakai laravel pak",
+			"Laravel is the best",
+			"Pakai laravel aja",
+			"Pokoknya laravel"
+		];
+
+		foreach ($strLs as $str) {
+			$this->frameworkAssert(_ex($str));
+		}
+	}
+
 
 	/**
 	 * @return void
@@ -53,6 +70,14 @@ class A1_Test extends TestCase
 		foreach ($strLs as $str) {		
 			$this->bulanAssert(_ex($str));
 		}
+	}
+
+	/**
+	 * @return void
+	 */
+	private function frameworkAssert(string $res): void
+	{
+		$this->assertTrue(((bool)preg_match("/framework/Uusi", $res)));
 	}
 
 	/**
