@@ -8,6 +8,30 @@ require __DIR__."/../init.php";
 
 class A1_Test extends TestCase
 {
+
+	/**
+	 * @return void
+	 */
+	public function testTanyaHari(): void
+	{
+		$strLs = [
+			"Sekarang hari apa?",
+			"hari apa sekarang?",
+			"Hai sayang, sekarang hari apa sih?",
+			
+			"skrng hari apa?",
+			"hri apa skrng?",
+			"skrng hri apaan seh?",
+			"ini hri apaan?",
+			"hri apaan skrng",
+			"skrng hri apa"
+		];
+
+		foreach ($strLs as $str) {		
+			$this->hariAssert(_ex($str));
+		}
+	}
+
 	/**
 	 * @return void
 	 */
@@ -29,6 +53,14 @@ class A1_Test extends TestCase
 		foreach ($strLs as $str) {		
 			$this->bulanAssert(_ex($str));
 		}
+	}
+
+	/**
+	 * @param string $res
+	 */
+	private function hariAssert(string $res): void
+	{
+		$this->assertTrue(((bool)preg_match("/Sekarang hari/Uusi", $res)));
 	}
 
 	/**
