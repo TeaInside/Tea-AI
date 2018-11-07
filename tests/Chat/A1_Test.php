@@ -16,10 +16,17 @@ class A1_Test extends TestCase
 		$strLs = [
 			"Sekarang bulan apa?",
 			"Bulan apa sekarang?",
-			"Hai sayang, sekarang bulan apa sih?"
+			"Hai sayang, sekarang bulan apa sih?",
+			
+			"skrng bulan apa?",
+			"bln apa skrng?",
+			"skrng bln apaan seh?",
+			"ini bln apaan?",
+			"bln apaan skrng",
+			"skrng bl apa"
 		];
 
-		foreach ($strLs as $str) {			
+		foreach ($strLs as $str) {		
 			$this->bulanAssert(_ex($str));
 		}
 	}
