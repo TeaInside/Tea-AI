@@ -39,7 +39,7 @@ private:
 	std::string getDay(int);
 	std::string phpDate(const char*, int);
 	void setPattern(const char*);
-	void setResponse(int, const char*);
+	void setResponse(int, const char*, int);
 };
 
 #endif

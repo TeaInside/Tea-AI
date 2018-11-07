@@ -3,15 +3,18 @@
 
 void TeaAI::setPattern(const char* pat) {
 	this->patterns[this->patternOffset] = (char*)malloc(strlen(pat) * sizeof(char*));
-	strcpy(this->patterns[this->patternOffset++], pat);
+	strcpy(this->patterns[this->patternOffset++], pat);	
 }
 
-void TeaAI::setResponse(int offset, const char *res) {
+void TeaAI::setResponse(int offset, const char *res, int rep = 1) {
 	if (this->responseOffsetD2[offset] == 0) {
 		this->responses[offset] = (char**)malloc(5 * sizeof(char*));
 	}
-	this->responses[offset][this->responseOffsetD2[offset]] = (char*)malloc(strlen(res) * sizeof(char*));
-	strcpy(this->responses[offset][this->responseOffsetD2[offset]++], res);
+	for (int i = 0; i < rep; ++i)
+	{
+		this->responses[offset][this->responseOffsetD2[offset]] = (char*)malloc(strlen(res) * sizeof(char*));
+		strcpy(this->responses[offset][this->responseOffsetD2[offset]++], res);	
+	}
 }
 
 void TeaAI::zeroFill() {
@@ -192,7 +195,7 @@ void TeaAI::buildResponses() {
 	this->setPattern(
 		"/(?:^|^.{0,20}[\\t\\s\\n])(laravel.{0,5})(?:[\\t\\s\\n].{0,20}|$)/Usi"
 	);
-	this->setResponse(i, "Hmm... Laravel, mirip nama framework yak");
+	this->setResponse(i, "Hmm... Laravel, mirip nama framework yak", 2);
 	this->setResponse(i, "The Laravel Framework for Web Artisans");
 	this->setResponse(i, "Love beautiful code? We do to, the PHP Framework for Web Artisan");
 	i++;
