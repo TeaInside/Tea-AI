@@ -11,10 +11,24 @@ class A1_Test extends TestCase
 	/**
 	 * @return void
 	 */
-	public function testSambutan(): void
+	public function testTanyaBulan(): void
 	{
-		// $h = (int)date("H");
-		// $r = _ex();
-		$this->assertTrue(true);
+		$strLs = [
+			"Sekarang bulan apa?",
+			"Bulan apa sekarang?",
+			"Hai sayang, sekarang bulan apa sih?"
+		];
+
+		foreach ($strLs as $str) {			
+			$this->bulanAssert(_ex($str));
+		}
+	}
+
+	/**
+	 * @param string $res
+	 */
+	private function bulanAssert(string $res): void
+	{
+		$this->assertTrue(((bool)preg_match("/Sekarang bulan /Uusi", $res)));
 	}
 }
