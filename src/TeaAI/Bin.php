@@ -352,7 +352,7 @@ final class Bin
 			$handle = fopen($this->inputRes, "r");
 			$res->setInput(fread($handle, 4096));
 			fclose($handle);
-			var_dump($res->run());
+			print $res->run();
 		}
 
 		//	else {
