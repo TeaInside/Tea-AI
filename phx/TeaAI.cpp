@@ -1,7 +1,7 @@
 
 
 #include "headers/TeaAI.h"
-#include "TeaLib/TeaPCRE.h"
+// #include "TeaLib/TeaPCRE.h"
 
 TeaAI::TeaAI() {
 	this->buildResponses();
@@ -23,11 +23,15 @@ bool TeaAI::check(Php::Value txt) {
 			
 			free(this->patterns);
 			free(this->responses);
+			this->patterns = nullptr;
+			this->responses = nullptr;
 
 			return true;
 		} else {
 			free(this->patterns[i]);
 			free(this->responses[i]);
+			this->patterns[i] = nullptr;
+			this->responses[i] = nullptr;
 		}
 	}
 	return false;
