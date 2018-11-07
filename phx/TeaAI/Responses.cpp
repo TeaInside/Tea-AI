@@ -195,7 +195,7 @@ void TeaAI::buildResponses() {
 	this->setPattern(
 		"/(?:^|^.{0,20}[\\t\\s\\n])(laravel.{0,5})(?:[\\t\\s\\n].{0,20}|$)/Usi"
 	);
-	this->setResponse(i, "Hmm... Laravel, mirip nama framework yak", 2);
+	this->setResponse(i, "Hmm... Laravel, kok mirip nama framework yak", 2);
 	this->setResponse(i, "The Laravel Framework for Web Artisans");
 	this->setResponse(i, "Love beautiful code? We do to, the PHP Framework for Web Artisan");
 	i++;
