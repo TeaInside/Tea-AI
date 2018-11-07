@@ -169,7 +169,7 @@ void TeaAI::buildResponses() {
 
 
 	this->setPattern(
-		"/((?:^.{0,20}[\\t\\s\\n]+)(bu?la?n?)(?:[\\t\\s\\n]*)(a?pa?)(?:[\\t\\s\\n]*)(i?ni?)(?:[\\t\\s\\n]+.{0,20}$))|((?:^.{0,20}[\\t\\s\\n]+)(bu?la?n?)(?:[\\t\\s\\n]*)(a?pa?)(?:[\\t\\s\\n]*)(se?ka?ra?n?g)(?:[\\t\\s\\n]+.{0,20}$))/Usi"
+		"/((?:^|^.{0,20}[\\t\\s\\n]+)(bu?la?n?)(?:[\\t\\s\\n]*)(a?pa?)(?:[\\t\\s\\n]*)(i?ni?)(?:[\\t\\s\\n]+.{0,20}$|$))|((?:^|^.{0,20}[\\t\\s\\n]+)(bu?la?n?)(?:[\\t\\s\\n]*)(a?pa?)(?:[\\t\\s\\n]*)(se?ka?ra?n?g)(?:[\\t\\s\\n]+.{0,20}$|$))/Usi"
 	);
 	this->setResponse(i, std::string("Sekarang bulan "+this->phpDate("F", unixtime)).c_str());
 	i++;
