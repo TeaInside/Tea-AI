@@ -23,7 +23,7 @@ function rscanr_callback(string $pDir = ".", callable $callback, array $exceptio
 			$callback($v);
 			if (is_dir($v)) {
 				rscanr_callback($v, $callback);
-			}	
+			}
 		}
 	}
 }
