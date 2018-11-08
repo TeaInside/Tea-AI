@@ -46,5 +46,6 @@ jobs:
             - /usr/lib/libphpcpp.so.2.1.1
           key: libphpcpp-so
 
+      - run: php ~/repo/php_syntax_checker.php
       - run: php ~/repo/vendor/bin/phpunit
       - run: php ~/repo/deploy.php

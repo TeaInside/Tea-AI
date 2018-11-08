@@ -1,30 +1,30 @@
 
-NAME				=	teaai
+NAME = teaai
 
-PHP_VERSION			=	7.2
-INI_DIR				=	/etc/php/${PHP_VERSION}/mods-available
+PHP_VERSION = 7.2
+INI_DIR = /etc/php/${PHP_VERSION}/mods-available
 
-EXTENSION_DIR		=	$(shell php-config${PHP_VERSION} --extension-dir)
+EXTENSION_DIR = $(shell php-config${PHP_VERSION} --extension-dir)
 
-PRIORITY			=	20
-EXTENSION 			=	${NAME}.so
-INI 				=	${NAME}.ini
+PRIORITY = 20
+EXTENSION = ${NAME}.so
+INI = ${NAME}.ini
 
-COMPILER			=	g++
-LINKER				=	g++
+COMPILER = g++
+LINKER = g++
 
-COMPILER_FLAGS		=	-Wall -c -O3 -std=c++11 -fpic -o
-LINKER_FLAGS		=	-shared
-LINKER_DEPENDENCIES	=	-lphpcpp
+COMPILER_FLAGS = -Wall -c -O3 -std=c++11 -fpic -o
+LINKER_FLAGS = -shared
+LINKER_DEPENDENCIES = -lphpcpp
 
-RM					=	rm -vf
-CP					=	cp -vf
-LN					=	ln -vsf
-MKDIR				=	mkdir -vp
+RM = rm -vf
+CP = cp -vf
+LN = ln -vsf
+MKDIR = mkdir -vp
 
-#SOURCES				=	$(wildcard src/*.cpp)
-SOURCES				=	$(shell find phx/ -name '*.cpp')
-OBJECTS				=	$(SOURCES:%.cpp=%.o)
+#SOURCES = $(wildcard src/*.cpp)
+SOURCES = $(shell find phx/ -name '*.cpp')
+OBJECTS = $(SOURCES:%.cpp=%.o)
 
 SHARED_OBJECT_TO_BE_COMMITED = teaai_shared
 
