@@ -8,4 +8,3 @@ $st->setInput($input);
 printf("Input: %s\n", $input);
 printf("\nResponse:\n");
 var_dump($st->run());
-Q
