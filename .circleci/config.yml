@@ -21,9 +21,9 @@ jobs:
           - v1-dependencies-{{ checksum "composer.json" }}
           - v1-dependencies-
 
-      - restore_cache:
-          keys:
-          - libphpcpp-so
+      # - restore_cache:
+      #     keys:
+      #     - libphpcpp-so
 
       - run: php build.php
       - run: make -j 4
@@ -34,17 +34,17 @@ jobs:
             - ./vendor
           key: v1-dependencies-{{ checksum "composer.json" }}
 
-      - save_cache:
-          paths:
-            - /tmp/phpcpp
-            - /usr/include/phpcpp
-            - /usr/include/phpcpp.h
-            - /usr/lib/libphpcpp.a
-            - /usr/lib/libphpcpp.so
-            - /usr/lib/libphpcpp.so.2.1
-            - /usr/lib/libphpcpp.a.2.1.1
-            - /usr/lib/libphpcpp.so.2.1.1
-          key: libphpcpp-so
+      # - save_cache:
+      #     paths:
+      #       - /tmp/phpcpp
+      #       - /usr/include/phpcpp
+      #       - /usr/include/phpcpp.h
+      #       - /usr/lib/libphpcpp.a
+      #       - /usr/lib/libphpcpp.so
+      #       - /usr/lib/libphpcpp.so.2.1
+      #       - /usr/lib/libphpcpp.a.2.1.1
+      #       - /usr/lib/libphpcpp.so.2.1.1
+      #     key: libphpcpp-so
 
       - run: php ~/repo/php_syntax_checker.php
       - run: php ~/repo/vendor/bin/phpunit
