@@ -37,7 +37,7 @@ void TeaAI::buildResponses() {
 	this->zeroFill();
 
 	this->setPattern(
-		"/(?:^|.{0,7}[\\t\\s\\n]{1,})(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(pa?gi?)([\\W]*)(?:[\\t\\s\\n]{1,}.{0,7}|$)/Usi"
+		"/(?:^|.{0,7}[\\s\\n]{1,})(se?la?ma?t|met|mat)(?:[\\s\\n]*)(pa?gi?)([\\W]*)(?:[\\s\\n]{1,}.{0,7}|$)/Usi"
 	);
 	if (this->iRange(0, 11)) {
 		this->setResponse(i, "Selamat pagi!");
@@ -59,7 +59,7 @@ void TeaAI::buildResponses() {
 	i++;
 
 	this->setPattern(
-		"/(?:^|.{0,7}[\\t\\s\\n]{1,})(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(siang)([\\!]*)?(?:[\\t\\s\\n]{1,}.{0,7}|$)/Usi"
+		"/(?:^|.{0,7}[\\s\\n]{1,})(se?la?ma?t|met|mat)(?:[\\s\\n]*)(siang)([\\!]*)?(?:[\\s\\n]{1,}.{0,7}|$)/Usi"
 	);
 	if (this->iRange(0, 10)) {
 		this->setResponse(i, "Ini masih pagi {cname}");
@@ -81,7 +81,7 @@ void TeaAI::buildResponses() {
 	i++;
 
 	this->setPattern(
-		"/(?:^|.{0,7}[\\t\\s\\n]{1,})(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(sore)([\\!]*)?(?:[\\t\\s\\n]{1,}.{0,7}|$)/Usi"
+		"/(?:^|.{0,7}[\\s\\n]{1,})(se?la?ma?t|met|mat)(?:[\\s\\n]*)(sore)([\\!]*)?(?:[\\s\\n]{1,}.{0,7}|$)/Usi"
 	);
 	if (this->iRange(0, 10)) {
 		this->setResponse(i, "Ini masih pagi {cname}");
@@ -103,7 +103,7 @@ void TeaAI::buildResponses() {
 	i++;
 
 	this->setPattern(
-		"/(?:^|.{0,7}[\\t\\s\\n])(se?la?ma?t|met|mat)(?:[\\t\\s\\n]*)(ma?l(a|e)?m)([\\!]*)?(?:[\\t\\s\\n].{0,7}|$)/Usi"
+		"/(?:^|.{0,7}[\\s\\n])(se?la?ma?t|met|mat)(?:[\\s\\n]*)(ma?l(a|e)?m)([\\!]*)?(?:[\\s\\n].{0,7}|$)/Usi"
 	);
 	if (this->iRange(0, 10)) {
 		this->setResponse(i, "Ini sudah pagi {cname}");
@@ -126,60 +126,60 @@ void TeaAI::buildResponses() {
 
 
 	this->setPattern(
-		"/((?:^|[\\t\\s\\n])(b(e|3)?s(o|0)?k?)(?:[\\t\\s\\n]*)(itu?)?(?:[\\t\\s\\n]*)(h(a|4)?r(i|1)?(ny(a|4)?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\W]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(b(e|3)?s(o|0)?k?)([\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
+		"/((?:^|[\\s\\n])(b(e|3)?s(o|0)?k?)(?:[\\s\\n]*)(itu?)?(?:[\\s\\n]*)(h(a|4)?r(i|1)?(ny(a|4)?)?)(?:[\\s\\n]*)((o|a|i)p(o|a|i)?)([\\W]*)?(?:[\\s\\n]|$))|((?:^|[\\s\\n])(ha?ri?)(?:[\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\s\\n]*)(b(e|3)?s(o|0)?k?)([\\W]*)?(?:[\\s\\n]|$))/Usi"
 	);
 	this->setResponse(i, std::string("Besok adalah hari "+this->getDay(unixtime+(3600*24))).c_str());
 	i++;
 
 	this->setPattern(
-		"/((?:^|[\\t\\s\\n])(k(e|3)?m(a|4)?r(i|1)?n?)(?:[\\t\\s\\n]*)(itu?)?(?:[\\t\\s\\n]*)(h(a|4)?r(i|1)?(ny(a|4)?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)([\\W]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\t\\s\\n]*)(k(e|3)?m(a|4)?r(i|1)?n?)([\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
+		"/((?:^|[\\s\\n])(k(e|3)?m(a|4)?r(i|1)?n?)(?:[\\s\\n]*)(itu?)?(?:[\\s\\n]*)(h(a|4)?r(i|1)?(ny(a|4)?)?)(?:[\\s\\n]*)((o|a|i)p(o|a|i)?)([\\W]*)?(?:[\\s\\n]|$))|((?:^|[\\s\\n])(ha?ri?)(?:[\\s\\n]*)((o|a|i)p(o|a|i)?)(?:[\\s\\n]*)(k(e|3)?m(a|4)?r(i|1)?n?)([\\W]*)?(?:[\\s\\n]|$))/Usi"
 	);
 	this->setResponse(i, std::string("Kemarin adalah hari "+this->getDay(unixtime-(3600*24))).c_str());
 	i++;
 
 	this->setPattern(
-		"/((?:^|^.{0,20}[\\t\\s\\n]+)(ha?ri?)(?:[\\t\\s\\n]*)(a?pa?(an)?)(?:[\\t\\s\\n]*)(i?ni?)(?:\\?*[\\t\\s\\n]+.{0,20}$|$))|((?:^|^.{0,20}[\\t\\s\\n]+)(i?ni?)(?:[\\t\\s\\n]*)(ha?ri?)(?:[\\t\\s\\n]*)(a?pa?(an)?)(?:\\?*[\\t\\s\\n]+.{0,20}$|$))|((?:^|[\\t\\s\\n])((s(e|3)?k(a|4)?r(a|4)?ng|(i|1)n(i|1))?(?:[\\t\\s\\n]*)(itu?)?)?(?:[\\t\\s\\n]*)(h(a|4)?r(i|1)?(ny(a|4)?)?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?(an)?)([\\?]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(ha?ri?)(?:[\\t\\s\\n]*)((o|a|i)p(o|a|i)?(ap)?)(?:[\\t\\s\\n]*)(s(e|3)?k(a|4)?r(a|4)?ng|(i|1)n(i|1))?([\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
+		"/((?:^|^.{0,20}[\\s\\n]+)(ha?ri?)(?:[\\s\\n]*)(a?pa?(an)?)(?:[\\s\\n]*)(i?ni?)(?:\\?*[\\s\\n]+.{0,20}$|$))|((?:^|^.{0,20}[\\s\\n]+)(i?ni?)(?:[\\s\\n]*)(ha?ri?)(?:[\\s\\n]*)(a?pa?(an)?)(?:\\?*[\\s\\n]+.{0,20}$|$))|((?:^|[\\s\\n])((s(e|3)?k(a|4)?r(a|4)?ng|(i|1)n(i|1))?(?:[\\s\\n]*)(itu?)?)?(?:[\\s\\n]*)(h(a|4)?r(i|1)?(ny(a|4)?)?)(?:[\\s\\n]*)((o|a|i)p(o|a|i)?(an)?)([\\?]*)?(?:[\\s\\n]|$))|((?:^|[\\s\\n])(ha?ri?)(?:[\\s\\n]*)((o|a|i)p(o|a|i)?(ap)?)(?:[\\s\\n]*)(s(e|3)?k(a|4)?r(a|4)?ng|(i|1)n(i|1))?([\\W]*)?(?:[\\s\\n]|$))/Usi"
 	);
 	this->setResponse(i, std::string("Sekarang hari "+this->getDay(unixtime)).c_str());
 	i++;
 
 	this->setPattern(
-		"/((?:^|[\\t\\s\\n])(s(e|3)?k(a|4)?r(a|4)?n?g?)(?:[\\t\\s\\n]*)(j(.)?m)(?:[\\t\\s\\n]*)(b?(e|3)?r(a|4)?p?(a|4)?)([\\W]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(j(.)?m)(?:[\\t\\s\\n]*)(b?(e|3)?r(a|4)?p?(a|4)?)(?:[\\t\\s\\n]*)(s(e|3)?k(a|4)?r(a|4)?n?g?)([\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
+		"/((?:^|[\\s\\n])(s(e|3)?k(a|4)?r(a|4)?n?g?)(?:[\\s\\n]*)(j(.)?m)(?:[\\s\\n]*)(b?(e|3)?r(a|4)?p?(a|4)?)([\\W]*)?(?:[\\s\\n]|$))|((?:^|[\\s\\n])(j(.)?m)(?:[\\s\\n]*)(b?(e|3)?r(a|4)?p?(a|4)?)(?:[\\s\\n]*)(s(e|3)?k(a|4)?r(a|4)?n?g?)([\\W]*)?(?:[\\s\\n]|$))/Usi"
 	);
 	this->setResponse(i, std::string("Sekarang jam "+this->phpDate("h:i:s A T", unixtime)).c_str());
 	i++;
 
 
 	this->setPattern(
-		"/((?:^|[\\t\\s\\n])(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\t\\s\\n]*)(b?(e|3)?s(o|0)?k)(?:[\\W]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(b?(e|3)?s(o|0)?k)(?:[\\t\\s\\n]*)(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
+		"/((?:^|[\\s\\n])(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\s\\n]*)(b?(e|3)?s(o|0)?k)(?:[\\W]*)?(?:[\\s\\n]|$))|((?:^|[\\s\\n])(b?(e|3)?s(o|0)?k)(?:[\\s\\n]*)(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\W]*)?(?:[\\s\\n]|$))/Usi"
 	);
 	this->setResponse(i, std::string("Besok adalah tanggal "+this->phpDate("d F Y", unixtime+(3600*24))).c_str());
 	i++;
 
 
 	this->setPattern(
-		"/((?:^|[\\t\\s\\n])(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\t\\s\\n]*)(k(e|3)?m(a|4)?r(i|1)?n)(?:[\\W]*)?(?:[\\t\\s\\n]|$))|((?:^|[\\t\\s\\n])(k(e|3)?m(a|4)?r(i|1)?n)(?:[\\t\\s\\n]*)(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\W]*)?(?:[\\t\\s\\n]|$))/Usi"
+		"/((?:^|[\\s\\n])(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\s\\n]*)(k(e|3)?m(a|4)?r(i|1)?n)(?:[\\W]*)?(?:[\\s\\n]|$))|((?:^|[\\s\\n])(k(e|3)?m(a|4)?r(i|1)?n)(?:[\\s\\n]*)(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\W]*)?(?:[\\s\\n]|$))/Usi"
 	);
 	this->setResponse(i, std::string("Kemarin adalah tanggal "+this->phpDate("d F Y", unixtime-(3600*24))).c_str());
 	i++;
 
 
 	this->setPattern(
-		"/((?:^|^.{1,15}[\\t\\s\\n])(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\t\\s\\n]*)(s(e|3)?k(a|4)?r(a|4)?n?(g|6)?|(i|1)n(i|1))(?:[\\W]*)?(?:[\\t\\s\\n].{1,10}$|$))|((?:^|^.{1,15}[\\t\\s\\n])(s(e|3)?k(a|4)?r(a|4)?n?(g|6)?|(i|1)n(i|1))(?:[\\t\\s\\n]*)(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\t\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\W]*)?(?:[\\t\\s\\n].{1,10}$|$))/Usi"
+		"/((?:^|^.{1,15}[\\s\\n])(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\s\\n]*)(s(e|3)?k(a|4)?r(a|4)?n?(g|6)?|(i|1)n(i|1))(?:[\\W]*)?(?:[\\s\\n].{1,10}$|$))|((?:^|^.{1,15}[\\s\\n])(s(e|3)?k(a|4)?r(a|4)?n?(g|6)?|(i|1)n(i|1))(?:[\\s\\n]*)(t(a|4)?n?(g|6)?(g|6)(a|4)?l)(?:[\\s\\n]*)(b(e|3)?r(a|4)?p?(a|4)?)(?:[\\W]*)?(?:[\\s\\n].{1,10}$|$))/Usi"
 	);
 	this->setResponse(i, std::string("Sekarang tanggal "+this->phpDate("d F Y", unixtime)).c_str());
 	i++;
 
 
 	this->setPattern(
-		"/((?:^|.{0,20}[\\t\\s\\n]+)(se?ka?ra?ng?)(?:[\\t\\s\\n]*)(bu?la?n?)(?:[\\t\\s\\n]*)(a?pa?(an)?)(?:\\?*[\\t\\s\\n]+.{0,20}$|$))|((?:^|.{0,20}[\\t\\s\\n]+)(bu?la?n?)(?:[\\t\\s\\n]*)(a?pa?(an)?)(?:[\\t\\s\\n]*)(se?ka?ra?ng?)(?:\\?*[\\t\\s\\n]+.{0,20}$|$))|((?:^|^.{0,20}[\\t\\s\\n]+)(bu?la?n?)(?:[\\t\\s\\n]*)(a?pa?(an)?)(?:[\\t\\s\\n]*)(i?ni?)(?:\\?*[\\t\\s\\n]+.{0,20}$|$))|((?:^|^.{0,20}[\\t\\s\\n]+)(i?ni?)(?:[\\t\\s\\n]*)(bu?la?n?)(?:[\\t\\s\\n]*)(a?pa?(an)?)(?:\\?*[\\t\\s\\n]+.{0,20}$|$))/Usi"
+		"/((?:^|.{0,20}[\\s\\n]+)(se?ka?ra?ng?)(?:[\\s\\n]*)(bu?la?n?)(?:[\\s\\n]*)(a?pa?(an)?)(?:\\?*[\\s\\n]+.{0,20}$|$))|((?:^|.{0,20}[\\s\\n]+)(bu?la?n?)(?:[\\s\\n]*)(a?pa?(an)?)(?:[\\s\\n]*)(se?ka?ra?ng?)(?:\\?*[\\s\\n]+.{0,20}$|$))|((?:^|^.{0,20}[\\s\\n]+)(bu?la?n?)(?:[\\s\\n]*)(a?pa?(an)?)(?:[\\s\\n]*)(i?ni?)(?:\\?*[\\s\\n]+.{0,20}$|$))|((?:^|^.{0,20}[\\s\\n]+)(i?ni?)(?:[\\s\\n]*)(bu?la?n?)(?:[\\s\\n]*)(a?pa?(an)?)(?:\\?*[\\s\\n]+.{0,20}$|$))/Usi"
 	);
 	this->setResponse(i, std::string("Sekarang bulan "+this->phpDate("F", unixtime)).c_str());
 	i++;
 
 
 	this->setPattern(
-		"/(?:^|^.{0,20}[\\t\\s\\n]*)(se?la?ma?t)(?:[\\t\\s\\n]+)(ma?ka?n)(?:[\\t\\s\\n]*.{0,20}$|$)/Usi"
+		"/(?:^|^.{0,20}[\\s\\n]*)(se?la?ma?t)(?:[\\s\\n]+)(ma?ka?n)(?:[\\s\\n]*.{0,20}$|$)/Usi"
 	);
 	this->setResponse(i, "Jangan lupa kerja sebelum makan");
 	i++;
@@ -192,7 +192,7 @@ void TeaAI::buildResponses() {
 	i++;
 
 	this->setPattern(
-		"/(?:^|^.{0,20}[\\t\\s\\n])(laravel.{0,5})(?:[\\t\\s\\n].{0,20}|$)/Usi"
+		"/(?:^|^.{0,20}[\\s\\n])(laravel.{0,5})(?:[\\s\\n].{0,20}|$)/Usi"
 	);
 	this->setResponse(i, "Hmm... Laravel, kok mirip nama framework yak", 2);
 	this->setResponse(i, "The Laravel Framework for Web Artisans");
@@ -201,21 +201,21 @@ void TeaAI::buildResponses() {
 
 
 	this->setPattern(
-		"/((?:^|.{0,20}[\\t\\s\\n])(te?ri?ma?)[\\t\\s\\n]*(ka?si?h)(?:[\\t\\s\\n]*.{0,20}|$))|((?:^|.{0,20}[\\t\\s\\n])(ma?ka?si?h)(?:[\\t\\s\\n]*.{0,20}|$))/Usi"
+		"/((?:^|.{0,20}[\\s\\n])(te?ri?ma?)[\\s\\n]*(ka?si?h)(?:[\\s\\n]*.{0,20}|$))|((?:^|.{0,20}[\\s\\n])(ma?ka?si?h)(?:[\\s\\n]*.{0,20}|$))/Usi"
 	);
 	this->setResponse(i, "Sama-sama");
 	this->setResponse(i, "Terima kasih kembali");
 	i++;
 
 	this->setPattern(
-		"/(?:^|.{0.10}[\\t\\s\\n]{1,})(a?pa?(an)?)(?:[\\t\\s\\n]*)(ka?ba?r)(?:[\\W]*)?(?:[\\t\\s\\n]|$)/Usi"
+		"/(?:^|.{0.10}[\\s\\n]{1,})(a?pa?(an)?)(?:[\\s\\n]*)(ka?ba?r)(?:[\\W]*)?(?:[\\s\\n]|$)/Usi"
 	);
 	this->setResponse(i, "Kabar baik");
 	this->setResponse(i, "Baik {cname}");
 	i++;
 
 	this->setPattern(
-		"/(?:^|.{0,4}[\\t\\s\\n]{1,})(h{1,2}(a|e){1,4}l{1,4}o{1,4})(?:[\\t\\s\\n]{1,}.{0,20}|$)/Usi"
+		"/(?:^|.{0,4}[\\s\\n]{1,})(h{1,2}(a|e){1,4}l{1,4}o{1,4})(?:[\\s\\n]{1,}.{0,20}|$)/Usi"
 	);
 	this->setResponse(i, "Halo {name}");
 	this->setResponse(i, "Halo juga {name}");
@@ -224,7 +224,7 @@ void TeaAI::buildResponses() {
 
 
 	this->setPattern(
-		"/(?:^|.{0,4}[\\t\\s\\n]{1,})(h{1,4}a{1,4}(i|e){1,4})(?:[\\t\\s\\n]{1,}.{0,20}|$)/Usi"
+		"/(?:^|.{0,4}[\\s\\n]{1,})(h{1,4}a{1,4}(i|e){1,4})(?:[\\s\\n]{1,}.{0,20}|$)/Usi"
 	);
 	this->setResponse(i, "Hai {name}");
 	this->setResponse(i, "Hai juga {name}");
